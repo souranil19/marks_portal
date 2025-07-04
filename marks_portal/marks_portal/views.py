@@ -1,5 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-def test(request):
-    return render(request,'index1.html')
+def school_landing(request):
+    return render(request,'landing.html')

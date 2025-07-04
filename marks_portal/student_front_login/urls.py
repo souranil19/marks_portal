@@ -21,7 +21,5 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.school_landing, name='landing_page'),
-    path('login/', include('student_front_login.urls'))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', views.login_page, name='login_page'),
+]
