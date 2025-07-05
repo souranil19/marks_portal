@@ -23,4 +23,5 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.login_page, name='login_page'),
     path('marksheet/', views.mark_sheet, name='mark_sheet'),
+    path('logout/', views.logout_view, name='logout'),
 ]

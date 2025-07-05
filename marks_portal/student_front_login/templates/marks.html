@@ -21,21 +21,21 @@
 <br>
 <div class="left">
 <block>
-<b>NAME:</b>&nbsp AMIT KUMAR <span style="float:right;">
-        <b> FATHER NAME:</b>&nbsp RANJAN KUMAR
+<b>NAME:</b>&nbsp {{ student.student|upper }} <span style="float:right;">
+        <b> FATHER NAME:</b>&nbsp {{ student.father|upper|default:"N/A" }}
     </span>
 <br>
-<b>MOBILE NO:</b>&nbsp 7895623014 <span style="float:right;">
-        <b> ADMISSION NO:</b>&nbsp 2522
+<b>MOBILE NO:</b>&nbsp {{ student.mobile|default:"N/A" }} <span style="float:right;">
+        <b> ADMISSION NO:</b>&nbsp {{ student.id }}
     </span>
 <br>
-<b>ROLL:</b>&nbsp 12 <span style="float:right;">
-        <b> DATE OF BIRTH:</b>&nbsp 10-08-2005
+<b>ROLL:</b>&nbsp {{ student.student|default:"N/A" }} <span style="float:right;">
+        <b> DATE OF BIRTH:</b>&nbsp {{ student.dob|date:"d-m-Y"|default:"N/A" }}
     </span>
 <br>
-<b>ADDRESS:</b>&nbsp 23h, ADHAR CHANDRA DAS LANE, KOLKTA-700067
+<b>ADDRESS:</b>&nbsp {{ student.address|default:"N/A" }}
 <br>
-<b>CLASS & SEC:</b>&nbsp 10-B
+<b>CLASS & SEC:</b>&nbsp {{ student.std|default:"N/A" }}
 </block>
 </div>
 <br>
@@ -80,8 +80,23 @@ PRINCIPAL SIGN
 </div>
 </center>
 <center>
-<a href="home_page.html"><button>Home Page</button></a>
+<a href="{% url 'login_page' %}"><button>Home Page</button></a>
+<a href="{% url 'logout' %}"><button style="background-color: #dc3545; margin-left: 10px;">Logout</button></a>
 </center>
+<style>
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+</style>
 </body>
 
 </html>
