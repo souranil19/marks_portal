@@ -10,10 +10,20 @@ def login_page(request):
     if request.method=="POST":
         student_name=request.POST.get('Student_name')
         Password=request.POST.get('Password')
+    
+    return render(request,'index1.html')
 
-        user=authenticate(student_name=student_name,Password=Password)
 
-        if user is None:
+
+def mark_sheet(request):
+    return render(request,'marks.html')
+
+
+#12.02 porjonto vedio dekhechi
+
+
+""" 
+if user is None:
             messages.error(request,'Invalid student name or password')
             return render(request,'index1.html')
         
@@ -22,16 +32,8 @@ def login_page(request):
             return redirect('marksheet/')
 
 
-    #return render(request,'index1.html')
 
-
-
-def mark_sheet(request):
-    return render(request,'marks.html')
-#12.02 porjonto vedio dekhechi
-
-
-""" FIRST LOGIC -----------------
+FIRST LOGIC -----------------
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
