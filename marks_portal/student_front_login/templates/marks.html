@@ -29,7 +29,7 @@
         <b> ADMISSION NO:</b>&nbsp {{ student.id }}
     </span>
 <br>
-<b>ROLL:</b>&nbsp {{ student.student|default:"N/A" }} <span style="float:right;">
+<b>ROLL:</b>&nbsp {{ student.id|default:"N/A" }} <span style="float:right;">
         <b> DATE OF BIRTH:</b>&nbsp {{ student.dob|date:"d-m-Y"|default:"N/A" }}
     </span>
 <br>
