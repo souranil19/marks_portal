@@ -1,3 +1,4 @@
+'''
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
@@ -101,6 +102,8 @@ def is_authenticated(request):
         return False
 
 
+
+
 @require_authentication
 def mark_sheet(request):
     print("mark_sheet view called")
@@ -128,34 +131,76 @@ def logout_view(request):
     request.session.flush()  # Completely clear the session
     messages.success(request, "You have been logged out successfully.")
     return redirect('login_page')
+'''
 
 
 
 
 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import Student
 
+# ----------------------------
+# LOGIN VIEW
+# ----------------------------
+def login_page(request):
+    if request.session.get('is_authenticated'):
+        return redirect('mark_sheet')
 
+    if request.method == 'POST':
+        student_name = request.POST.get('student_name')
+        password = request.POST.get('password')
 
+        if student_name and password:
+            try:
+                student = Student.objects.get(student_name=student_name, password=password)
 
+                # Store session
+                request.session['student_id'] = student.id
+                request.session['student_name'] = student.student_name
+                request.session['is_authenticated'] = True
+                request.session.set_expiry(1800)  # 30 min
 
-
-
-
-
-
-
-
-
-
-#12.02 porjonto vedio dekhechi
-"""
-
-if UserID.objects.filter(unique_id=entered_id, username=entered_name).exists():
-            request.session['unique_id'] = entered_id
-            request.session['username'] = entered_name
-            return redirect('main')
+                return redirect('mark_sheet')
+            except Student.DoesNotExist:
+                messages.error(request, 'Invalid student name or password.')
         else:
-            messages.error(request, "Invalid ID or Username. Please try again.")
+            messages.error(request, 'Please fill in all fields')
+
+    return render(request, 'index1.html',)
 
 
-"""
+# ----------------------------
+# LOGOUT VIEW
+# ----------------------------
+def logout_view(request):
+    request.session.flush()
+    messages.success(request, 'Logged out successfully.')
+    return redirect('login_page')
+
+
+# ----------------------------
+# DECORATOR TO PROTECT VIEWS
+# ----------------------------
+def login_required(view_func):
+    def wrapper(request, *args, **kwargs):
+        if not request.session.get('is_authenticated'):
+            messages.error(request, 'Login required to access this page.')
+            return redirect('login_page')
+        return view_func(request, *args, **kwargs)
+    return wrapper
+
+
+# ----------------------------
+# PROTECTED VIEW: MARK SHEET
+# ----------------------------
+@login_required
+def mark_sheet(request):
+    student_id = request.session.get('student_id')
+    student = Student.objects.get(id=student_id)
+
+    return render(request, 'marks.html', {
+        'student': student,
+        'student_name': student.student_name
+    })
