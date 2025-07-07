@@ -1,142 +1,3 @@
-'''
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.auth.hashers import make_password, check_password
-from django.utils.crypto import get_random_string
-from .models import Student
-import hashlib
-import secrets
-
-def login_page(request):
-    # Redirect to marks if already authenticated
-    if is_authenticated(request):
-        return redirect('mark_sheet')
-        
-    if request.method == "POST":
-        student_name = request.POST.get('student_name')
-        password = request.POST.get('password')
-        print(f"POST data received - student_name: {student_name}, password: {password}")
-        
-        if student_name and password:  # Check if both values are not None/empty
-            try:
-                student = Student.objects.get(student_name=student_name, password=password)
-                print("Student found, setting secure session and redirecting...")
-                
-                # Create a secure session token
-                session_token = secrets.token_urlsafe(32)
-                session_hash = hashlib.sha256(f"{student.id}{student_name}{session_token}".encode()).hexdigest()
-                
-                # Store secure session data
-                request.session['student_id'] = student.id
-                request.session['student_name'] = student_name
-                request.session['session_token'] = session_token
-                request.session['session_hash'] = session_hash
-                request.session['is_authenticated'] = True
-                
-                # Set session expiry (30 minutes)
-                request.session.set_expiry(1800)
-                
-                return redirect('mark_sheet')
-            except Student.DoesNotExist:
-                print("Student not found in database")
-                messages.error(request, "Invalid ID or Username. Please try again.")
-        else:
-            print("Missing student_name or password")
-            messages.error(request, "Please fill in both fields.")
-    
-    return render(request, 'index1.html')
-
-
-
-def require_authentication(view_func):
-    """
-    Decorator to require authentication for views
-    """
-    def wrapper(request, *args, **kwargs):
-        if not is_authenticated(request):
-            request.session.flush()
-            messages.error(request, "Please login to access this page.")
-            return redirect('login_page')
-        return view_func(request, *args, **kwargs)
-    return wrapper
-
-
-def is_authenticated(request):
-    """
-    Verify if the user is properly authenticated by checking:
-    1. Required session variables exist
-    2. Session hash is valid
-    3. Student exists in database
-    4. Session hasn't expired
-    """
-    required_fields = ['student_id', 'student_name', 'session_token', 'session_hash', 'is_authenticated']
-    
-    # Check if all required session fields exist
-    if not all(field in request.session for field in required_fields):
-        return False
-    
-    # Check if is_authenticated flag is True
-    if not request.session.get('is_authenticated'):
-        return False
-    
-    try:
-        # Verify student exists in database
-        student_id = request.session.get('student_id')
-        student_name = request.session.get('student_name')
-        student = Student.objects.get(id=student_id, student_name=student_name)
-        
-        # Verify session hash
-        session_token = request.session.get('session_token')
-        expected_hash = hashlib.sha256(f"{student.id}{student_name}{session_token}".encode()).hexdigest()
-        stored_hash = request.session.get('session_hash')
-        
-        if expected_hash != stored_hash:
-            return False
-            
-        return True
-        
-    except Student.DoesNotExist:
-        return False
-    except Exception as e:
-        print(f"Authentication error: {e}")
-        return False
-
-
-
-
-@require_authentication
-def mark_sheet(request):
-    print("mark_sheet view called")
-    print(f"Session data: {dict(request.session.items())}")
-    
-    print("Authentication successful, rendering marks.html")
-    # Get student data for the template
-    student_id = request.session.get('student_id')
-    student = Student.objects.get(id=student_id)
-    
-    context = {
-        'student': student,
-        'student_name': student.student_name
-    }
-    
-    return render(request, 'marks.html', context)
-
-
-
-def logout_view(request):
-    """
-    Securely logout the user by clearing all session data
-    """
-    print("Logging out user, clearing session")
-    request.session.flush()  # Completely clear the session
-    messages.success(request, "You have been logged out successfully.")
-    return redirect('login_page')
-'''
-
-
-
-
-
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Student
@@ -151,8 +12,9 @@ def login_page(request):
     if request.method == 'POST':
         student_name = request.POST.get('student_name')
         password = request.POST.get('password')
+        selection_option = request.POST.get('selection_option')
 
-        if student_name and password:
+        if student_name and password and selection_option:
             try:
                 student = Student.objects.get(student_name=student_name, password=password)
 
@@ -162,7 +24,14 @@ def login_page(request):
                 request.session['is_authenticated'] = True
                 request.session.set_expiry(1800)  # 30 min
 
-                return redirect('mark_sheet')
+                # Redirect based on selection
+                if selection_option == 'notices':  # Student Marks
+                    return redirect('mark_sheet')
+                elif selection_option == 'profile':  # Student Details Update
+                    return redirect('details_update')
+                else:
+                    return redirect('mark_sheet')  # Default fallback
+                    
             except Student.DoesNotExist:
                 messages.error(request, 'Invalid student name or password.')
         else:
@@ -201,6 +70,57 @@ def mark_sheet(request):
     student = Student.objects.get(id=student_id)
 
     return render(request, 'marks.html', {
+        'student': student,
+        'student_name': student.student_name
+    })
+
+
+@login_required
+def details_update(request):
+    student_id = request.session.get('student_id')
+    student = Student.objects.get(id=student_id)
+    
+    if request.method == 'POST':
+        # Get form data
+        student_code = request.POST.get('student')
+        mobile = request.POST.get('mobile')
+        std = request.POST.get('std')
+        father = request.POST.get('father')
+        dob = request.POST.get('dob')
+        password = request.POST.get('password')
+        address = request.POST.get('address')
+        img = request.FILES.get('img')
+        
+        try:
+            # Update student fields (excluding student_name as it cannot be updated)
+            if student_code:
+                student.student = student_code
+            if mobile:
+                student.mobile = int(mobile) if mobile.isdigit() else None
+            if std:
+                student.std = int(std) if std.isdigit() else None
+            if father:
+                student.father = father
+            if dob:
+                student.dob = dob
+            if password:
+                student.password = password
+            if address:
+                student.address = address
+            if img:
+                student.img = img
+            
+            # Save the updated student
+            student.save()
+            messages.success(request, 'Details updated successfully!')
+            return redirect('details_update')
+            
+        except ValueError as e:
+            messages.error(request, 'Invalid data provided. Please check your inputs.')
+        except Exception as e:
+            messages.error(request, 'An error occurred while updating details. Please try again.')
+    
+    return render(request, 'details_update.html', {
         'student': student,
         'student_name': student.student_name
     })

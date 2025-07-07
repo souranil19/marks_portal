@@ -12,148 +12,19 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'home_page.css' %}">
     <script src="{% static 'toast.js' %}"></script>
+    
+    <!-- Custom Blinking Animation -->
     <style>
-        body {
-            background-image: linear-gradient(rgba(70, 130, 180, .8), rgba(179, 49, 49, 0.8)), url("{% static 'murari-pukur-government-sponsored-higher-secondary-school-ultadanga-main-road-kolkata-senior-secondary-schools-i6hmani5tn.jpg' %}");
-            background-size: cover;
-            background-attachment: fixed;
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
         }
         
-        .header-title {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #ff0505;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            margin-bottom: 10px;
-        }
-        
-        .header-subtitle {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ff0505;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
-        }
-        
-        .login-container {
-            background: rgba(249, 249, 249, 0)
-            border-radius: 50px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            padding: 40px;
-            backdrop-filter: blur(7px);
-            border: 2px solid rgba(255, 255, 255, 0.12);
-        }
-        
-        .school-image {
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            margin-bottom: 30px;
-            border: 3px solid #fff;
-        }
-        
-        .form-control {
-            border-radius: 12px;
-            border: 2px solid #ddd;
-            padding: 12px 15px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
-        }
-        
-        .login-btn {
-            background: linear-gradient(45deg, #007bff, #0056b3);
-            border: none;
-            border-radius: 12px;
-            padding: 12px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-        }
-        
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
-            background: linear-gradient(45deg, #0056b3, #004085);
-        }
-        
-        .form-label {
+        .alert-warning {
             font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
+            border-radius: 10px !important;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
         }
-        
-        .input-group-text {
-            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
-            border: 2px solid #ddd;
-            border-right: none;
-        }
-        
-        .input-group .form-control {
-            border-left: none;
-        }
-        
-        @media (max-width: 768px) {
-            .header-title {
-                font-size: 1.8rem;
-            }
-            .header-subtitle {
-                font-size: 1.2rem;
-            }
-            .login-container {
-                margin: 20px;
-                padding: 30px 20px;
-            }
-        }
-
-        #toast {
-    visibility: hidden;
-    min-width: 200px;
-    color: white;
-    text-align: center;
-    border-radius: 5px;
-    padding: 12px;
-    position: fixed;
-    z-index: 9999;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 16px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-
-  /* Error toast (red) */
-  #toast.toast-error {
-    background-color: rgb(240, 6, 6);
-  }
-
-  /* Success toast (green) */
-  #toast.toast-success {
-    background-color: rgb(40, 167, 69);
-  }
-
-  #toast.show {
-    visibility: visible;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  }
-
-  @keyframes fadein {
-    from { opacity: 0; top: -50px; }
-    to { opacity: 1; top: 20px; }
-  }
-
-  @keyframes fadeout {
-    from { opacity: 1; top: 20px; }
-    to { opacity: 0; top: -50px; }
-  }
-
     </style>
 </head>
 <body>
@@ -162,7 +33,7 @@
             <div class="col-12">
                 <!-- Header -->
                 <div class="text-center mb-4">
-                    <h1 class="header-title">MURARI PUKUR GOVERNMENT SPONSORED HIGHER SECONDARY SCHOOL</h1>
+                    <h1 class="header-title">MURARIPUKUR GOVERNMENT SPONSORED HIGHER SECONDARY SCHOOL</h1>
                     <h2 class="header-subtitle">EXAMINATION PORTAL</h2>
                 </div>
                 <!-- Toast Messages -->
@@ -182,7 +53,9 @@
                                 {% csrf_token %}
                                 
                                 <!-- Student Name Input -->
+
                                 <div class="mb-4">
+                                    
                                     <label for="student_name" class="form-label">
                                         <i class="fas fa-user me-2"></i>STUDENT NAME
                                     </label>
@@ -198,6 +71,28 @@
                                                required>
                                         <div class="invalid-feedback">
                                             Please provide a valid student name.
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Selection Dropdown -->
+                                <div class="mb-4">
+                                    <label for="selection_option" class="form-label">
+                                        <i class="fas fa-list me-2"></i>SELECT OPTION
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-list"></i>
+                                        </span>
+                                        <select class="form-select" 
+                                                id="selection_option" 
+                                                name="selection_option" 
+                                                required>
+                                            <option value="notices">STUDENT MARKS</option>
+                                            <option value="profile">STUDENT DETAILS UPDATE</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a valid option.
                                         </div>
                                     </div>
                                 </div>
@@ -230,6 +125,14 @@
                                     </button>
                                 </div>
                             </form>
+                            
+                            <!-- Blinking Mandatory Message -->
+                            <div class="text-center mt-4">
+                                <div class="alert alert-warning border-0" style="background: linear-gradient(45deg, #fff3cd,rgb(240, 206, 93)); animation: blink 1.5s infinite;">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    <strong>IMPORTANT:</strong> Updating student details is mandatory for all students to get the accurate details on <b>MARKS SHEET</b>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
