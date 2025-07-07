@@ -1,5 +1,5 @@
 """
-URL configuration for marks_portal project.
+URL configuration for teacher app.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -21,8 +21,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.school_landing, name='landing_page'),
-    path('login/', include('student_front_login.urls')),
-    path('teacher/', include('teacher.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', views.teacher_login_page, name='teacher_login_page'),
+    path('dashboard/', views.teacher_dashboard, name='teacher_dashboard'),
+    path('details-update/', views.teacher_details_update, name='teacher_details_update'),
+    path('logout/', views.teacher_logout_view, name='teacher_logout'),
+]

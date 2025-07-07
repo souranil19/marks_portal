@@ -2,248 +2,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MARKS PORTAL</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARKS PORTAL</title>
 
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="{% static 'design.css' %}">
-<script src="{% static 'toast.js' %}"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'design.css' %}">
+    <script src="{% static 'toast.js' %}"></script>
 </head>
 <body>
-<div class="container-fluid py-3">
-<!-- School Header Section -->
-<div class="row">
-<div class="col-12">
-<div class="text-center mb-3">
-<h1 class="school_name fw-bold">Muraripukur Government Sponsored Higher Secondary School</h1>
-<p class="address mb-1 fs-5">37/e Ultadanga Main Road, Kolkata-700067</p>
-<p class="address mb-0 fs-5">SCHOOL CODE-24200</p>
-</div>
-</div>
-</div>
-<center>
-<div id="toast" class="toast-success">
-  Login successful!
-</div>
-</center>
-<!-- Header Images and Info -->
-<div class="row align-items-center mb-4">
-<div class="col-lg-2 col-md-3 col-sm-4 text-center mb-3 mb-md-0">
-<img src="{% static '165784.png' %}" class="img-fluid rounded" style="max-width: 100px; height: 100px; object-fit: contain;" alt="School Logo">
-</div>
-<div class="col-lg-8 col-md-6 col-sm-4 text-center mb-3 mb-md-0">
-<p class="mb-2 fw-bold">AFFILIATED TO CBSE</p>
-<div class="header-info">
-<div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-<span class="text-truncate"><b>EMAIL:</b> support@souranilbasak.com</span>
-<span><b>CONTACT NO.</b> 7985214023</span>
-</div>
-</div>
-<div class="mt-2">
-<p class="fw-bold mb-0">PROGRESS CARD 2023-24</p>
-</div>
-</div>
-<div class="col-lg-2 col-md-3 col-sm-4 text-center">
-<div class="d-flex flex-column align-items-center gap-2">
-{% if student.img %}
-<img src="{{ student.img.url }}" class="img-fluid rounded border" style="max-width: 120px; height: 120px; object-fit: cover;" alt="Student Photo">
-{% else %}
-<img src="{% static 'download.png' %}" class="img-fluid rounded border" style="max-width: 120px; height: 120px; object-fit: cover;" alt="Student Photo">
-{% endif %}
-<img src="{% static 'qr_code_barcode.jpg' %}" class="img-fluid" style="max-width: 100px; height: 100px; object-fit: contain;" alt="QR Code">
-</div>
-</div>
-</div>
-<!-- Student Profile Section -->
-<div class="row mb-3">
-<div class="col-12">
-<div class="profile rounded">
-<div class="text-center py-2">
-<h4 class="text fw-bold mb-0">STUDENT'S PROFILE</h4>
-</div>
-</div>
-</div>
-</div>
+    <div class="container-fluid py-3">
+        <!-- School Header Section -->
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center mb-3">
+                    <h1 class="school_name fw-bold">Muraripukur Government Sponsored Higher Secondary School</h1>
+                    <p class="address mb-1 fs-5">37/e Ultadanga Main Road, Kolkata-700067</p>
+                    <p class="address mb-0 fs-5">SCHOOL CODE-24200</p>
+                </div>
+            </div>
+        </div>
+        <center>
+            <div id="toast" class="toast-success">
+                Login successful!
+            </div>
+        </center>
+        <!-- Header Images and Info -->
+        <div class="row align-items-center mb-4">
+            <div class="col-lg-2 col-md-3 col-sm-4 text-center mb-3 mb-md-0">
+                <img src="{% static '165784.png' %}" class="img-fluid rounded" style="max-width: 100px; height: 100px; object-fit: contain;" alt="School Logo">
+            </div>
+            <div class="col-lg-8 col-md-6 col-sm-4 text-center mb-3 mb-md-0">
+                <p class="mb-2 fw-bold">AFFILIATED TO CBSE</p>
+                <div class="header-info">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                        <span class="text-truncate"><b>EMAIL:</b> support@souranilbasak.com</span>
+                        <span><b>CONTACT NO.</b> 7985214023</span>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <p class="fw-bold mb-0">PROGRESS CARD 2023-24</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                <div class="d-flex flex-column align-items-center gap-2">
+                    {% if student.img %}
+                        <img src="{{ student.img.url }}" class="img-fluid rounded border" style="max-width: 120px; height: 120px; object-fit: cover;" alt="Student Photo">
+                    {% else %}
+                        <img src="{% static 'download.png' %}" class="img-fluid rounded border" style="max-width: 120px; height: 120px; object-fit: cover;" alt="Student Photo">
+                    {% endif %}
+                    <img src="{% static 'qr_code_barcode.jpg' %}" class="img-fluid" style="max-width: 100px; height: 100px; object-fit: contain;" alt="QR Code">
+                </div>
+            </div>
+        </div>
+        <!-- Student Profile Section -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="profile rounded">
+                    <div class="text-center py-2">
+                        <h4 class="text fw-bold mb-0">STUDENT'S PROFILE</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<!-- Student Details -->
-<div class="row mb-4">
-<div class="col-12">
-<div class="card border-2">
-<div class="card-body">
-<div class="row mb-2">
-<div class="col-md-6">
-<span class="fw-bold">NAME:</span> {{ student.student|upper }}
-</div>
-<div class="col-md-6">
-<span class="fw-bold">FATHER NAME:</span> {{ student.father|upper|default:"N/A" }}
-</div>
-</div>
-<div class="row mb-2">
-<div class="col-md-6">
-<span class="fw-bold">MOBILE NO:</span> {{ student.mobile|default:"N/A" }}
-</div>
-<div class="col-md-6">
-<span class="fw-bold">ADMISSION NO:</span> {{ student.id }}
-</div>
-</div>
-<div class="row mb-2">
-<div class="col-md-6">
-<span class="fw-bold">ROLL:</span> {{ student.id|default:"N/A" }}
-</div>
-<div class="col-md-6">
-<span class="fw-bold">DATE OF BIRTH:</span> {{ student.dob|date:"d-m-Y"|default:"N/A" }}
-</div>
-</div>
-<div class="row mb-2">
-<div class="col-12">
-<span class="fw-bold">ADDRESS:</span> {{ student.address|upper|default:"N/A" }}
-</div>
-</div>
-<div class="row">
-<div class="col-12">
-<span class="fw-bold">CLASS & SEC:</span> {{ student.std|default:"N/A" }}
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Academic Performance Section -->
-<div class="row mb-3">
-<div class="col-12">
-<div class="profile rounded">
-<div class="text-center py-2">
-<h4 class="text fw-bold mb-0">ACADEMIC PERFORMANCE</h4>
-</div>
-</div>
-</div>
-</div>
+        <!-- Student Details -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card border-2">
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <span class="fw-bold">NAME:</span> {{ student.student|upper }}
+                            </div>
+                            <div class="col-md-6">
+                                <span class="fw-bold">FATHER NAME:</span> {{ student.father|upper|default:"N/A" }}
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <span class="fw-bold">MOBILE NO:</span> {{ student.mobile|default:"N/A" }}
+                            </div>
+                            <div class="col-md-6">
+                                <span class="fw-bold">ADMISSION NO:</span> {{ student.id }}
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <span class="fw-bold">ROLL:</span> {{ student.id|default:"N/A" }}
+                            </div>
+                            <div class="col-md-6">
+                                <span class="fw-bold">DATE OF BIRTH:</span> {{ student.dob|date:"d-m-Y"|default:"N/A" }}
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <span class="fw-bold">ADDRESS:</span> {{ student.address|upper|default:"N/A" }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="fw-bold">CLASS & SEC:</span> {{ student.std|default:"N/A" }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Academic Performance Section -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="profile rounded">
+                    <div class="text-center py-2">
+                        <h4 class="text fw-bold mb-0">ACADEMIC PERFORMANCE</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<!-- Marks Table -->
-<div class="row mb-4">
-<div class="col-12">
-<div class="table-responsive">
-<table class="table table-bordered table-striped">
-<thead class="table-dark">
-<tr>
-<th rowspan="3" class="align-middle text-center">SUBJECT</th>
-<th colspan="3" class="text-center">HALF YEARLY</th>
-<th colspan="3" class="text-center">FINAL YEARLY</th>
-<th rowspan="3" class="align-middle text-center">OBTAINED MARKS</th>
-<th rowspan="3" class="align-middle text-center">TOTAL</th>
-<th rowspan="3" class="align-middle text-center">PERCENTAGE</th>
-</tr>
-<tr>
-<th rowspan="2" class="align-middle text-center">M.M</th>
-<th colspan="2" class="text-center">OBTAINED</th>
-<th rowspan="2" class="align-middle text-center">M.M</th>
-<th colspan="2" class="text-center">OBTAINED</th>
-</tr>
-<tr>
-<th class="text-center">THEORY</th>
-<th class="text-center">PRACTICAL</th>
-<th class="text-center">THEORY</th>
-<th class="text-center">PRACTICAL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="text-center">
-<td class="fw-bold">BENGALI</td>
-<td>100</td><td>65</td><td>30</td><td>100</td><td>62</td><td>25</td><td class="fw-bold">182</td><td>200</td><td class="fw-bold">91</td>
-</tr>
-<tr class="text-center">
-<td class="fw-bold">ENGLISH</td>
-<td>100</td><td>60</td><td>30</td><td>100</td><td>65</td><td>30</td><td class="fw-bold">185</td><td>200</td><td class="fw-bold">92.5</td>
-</tr>
-<tr class="text-center">
-<td class="fw-bold">MATHEMATICS</td>
-<td>100</td><td>62</td><td>30</td><td>100</td><td>63</td><td>30</td><td class="fw-bold">185</td><td>200</td><td class="fw-bold">92.5</td>
-</tr>
-<tr class="text-center">
-<td class="fw-bold">PHYSICAL SCIENCE</td>
-<td>100</td><td>58</td><td>25</td><td>100</td><td>60</td><td>22</td><td class="fw-bold">165</td><td>200</td><td class="fw-bold">82.5</td>
-</tr>
-<tr class="text-center">
-<td class="fw-bold">LIFE SCIENCE</td>
-<td>100</td><td>55</td><td>30</td><td>100</td><td>57</td><td>30</td><td class="fw-bold">172</td><td>200</td><td class="fw-bold">86</td>
-</tr>
-<tr class="text-center">
-<td class="fw-bold">HISTORY</td>
-<td>100</td><td>60</td><td>30</td><td>100</td><td>62</td><td>30</td><td class="fw-bold">182</td><td>200</td><td class="fw-bold">91</td>
-</tr>
-<tr class="text-center">
-<td class="fw-bold">GEOGRAPHY</td>
-<td>100</td><td>65</td><td>25</td><td>100</td><td>60</td><td>20</td><td class="fw-bold">170</td><td>200</td><td class="fw-bold">85</td>
-</tr>
-<tr class="text-center table-warning">
-<th class="fw-bold">TOTAL</th>
-<td class="fw-bold">700</td><td class="fw-bold">425</td><td class="fw-bold">200</td><td class="fw-bold">700</td><td class="fw-bold">429</td><td class="fw-bold">187</td><td class="fw-bold">1241</td><td class="fw-bold">1400</td><td class="fw-bold">88.6</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<!-- Signature Section -->
-<div class="row mb-4">
-<div class="col-12 d-flex justify-content-center">
-<div class="sign border border-2 border-dark rounded p-4" style="width: 90%; max-width: 800px; min-height: 120px; background-color: white;">
-<div class="row">
-<!-- Left Side: Date and Parent Sign -->
-<div class="col-md-6 col-12 mb-3 mb-md-0">
-<div class="h-100 d-flex flex-column justify-content-between">
-<div>
-<div class="fw-bold fs-6">25-10-2023</div>
-<div class="small text-muted">ISSUED DATE</div>
-</div>
-<div class="mt-4">
-<div class="fw-bold mb-4 fs-6">PARENTS SIGN</div>
-</div>
-</div>
-</div>
+        <!-- Marks Table -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th rowspan="3" class="align-middle text-center">SUBJECT</th>
+                                <th colspan="3" class="text-center">FIRST TERM</th>
+                                <th colspan="3" class="text-center">HALF YEARLY</th>
+                                <th colspan="3" class="text-center">FINAL YEARLY</th>
+                                <th rowspan="3" class="align-middle text-center">OBTAINED MARKS</th>
+                                <th rowspan="3" class="align-middle text-center">TOTAL</th>
+                                <th rowspan="3" class="align-middle text-center">PERCENTAGE</th>
+                            </tr>
+                            <tr>
+                                <th rowspan="2" class="align-middle text-center">F.M</th>
+                                <th colspan="2" class="text-center">OBTAINED</th>
+                                <th rowspan="2" class="align-middle text-center">F.M</th>
+                                <th colspan="2" class="text-center">OBTAINED</th>
+                                <th rowspan="2" class="align-middle text-center">F.M</th>
+                                <th colspan="2" class="text-center">OBTAINED</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">THEORY</th>
+                                <th class="text-center">PRACTICAL</th>
+                                <th class="text-center">THEORY</th>
+                                <th class="text-center">PRACTICAL</th>
+                                <th class="text-center">THEORY</th>
+                                <th class="text-center">PRACTICAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center">
+                                <td class="fw-bold">BENGALI</td>
+                                <td>100</td><td>70</td><td>25</td><td>100</td><td>65</td><td>30</td><td>100</td><td>62</td><td>25</td><td class="fw-bold">277</td><td>300</td><td class="fw-bold">92.3</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td class="fw-bold">ENGLISH</td>
+                                <td>100</td><td>68</td><td>27</td><td>100</td><td>60</td><td>30</td><td>100</td><td>65</td><td>30</td><td class="fw-bold">280</td><td>300</td><td class="fw-bold">93.3</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td class="fw-bold">MATHEMATICS</td>
+                                <td>100</td><td>75</td><td>28</td><td>100</td><td>62</td><td>30</td><td>100</td><td>63</td><td>30</td><td class="fw-bold">288</td><td>300</td><td class="fw-bold">96.0</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td class="fw-bold">PHYSICAL SCIENCE</td>
+                                <td>100</td><td>62</td><td>23</td><td>100</td><td>58</td><td>25</td><td>100</td><td>60</td><td>22</td><td class="fw-bold">250</td><td>300</td><td class="fw-bold">83.3</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td class="fw-bold">LIFE SCIENCE</td>
+                                <td>100</td><td>65</td><td>28</td><td>100</td><td>55</td><td>30</td><td>100</td><td>57</td><td>30</td><td class="fw-bold">265</td><td>300</td><td class="fw-bold">88.3</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td class="fw-bold">HISTORY</td>
+                                <td>100</td><td>72</td><td>26</td><td>100</td><td>60</td><td>30</td><td>100</td><td>62</td><td>30</td><td class="fw-bold">280</td><td>300</td><td class="fw-bold">93.3</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td class="fw-bold">GEOGRAPHY</td>
+                                <td>100</td><td>70</td><td>24</td><td>100</td><td>65</td><td>25</td><td>100</td><td>60</td><td>20</td><td class="fw-bold">264</td><td>300</td><td class="fw-bold">88.0</td>
+                            </tr>
+                            <tr class="text-center table-warning">
+                                <th class="fw-bold">TOTAL</th>
+                                <td class="fw-bold">700</td><td class="fw-bold">482</td><td class="fw-bold">181</td><td class="fw-bold">700</td><td class="fw-bold">425</td><td class="fw-bold">200</td><td class="fw-bold">700</td><td class="fw-bold">429</td><td class="fw-bold">187</td><td class="fw-bold">1904</td><td class="fw-bold">2100</td><td class="fw-bold">90.7</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Signature Section -->
+        <div class="row mb-4">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="sign border border-2 border-dark rounded p-4" style="width: 90%; max-width: 800px; min-height: 120px; background-color: white;">
+                    <div class="row">
+                        <!-- Left Side: Date and Parent Sign -->
+                        <div class="col-md-6 col-12 mb-3 mb-md-0">
+                            <div class="h-100 d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="fw-bold fs-6">25-10-2023</div>
+                                    <div class="small text-muted">ISSUED DATE</div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="fw-bold mb-4 fs-6">PARENTS SIGN</div>
+                                </div>
+                            </div>
+                        </div>
 
-<!-- Right Side: Principal Sign -->
-<div class="col-md-6 col-12">
-<div class="h-100 d-flex flex-column justify-content-between align-items-end">
-<div class="text-end mb-3">
-<img src="{% static 'WhatsApp_Image_2025-01-26_at_1.58.11_PM_1.jpeg' %}" 
-     class="img-fluid" 
-     style="max-width: 180px; height: auto; max-height: 50px; object-fit: contain;" 
-     alt="Principal Signature">
-</div>
-<div class="text-end">
-<div class="fw-bold mb-4 fs-6">PRINCIPAL SIGN</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Action Buttons -->
-<div class="row">
-<div class="col-12 text-center">
-<div class="d-flex justify-content-center gap-3 flex-wrap">
-<a href="{% url 'login_page' %}" class="btn btn-primary btn-lg">
-<i class="fas fa-home me-2"></i>Home Page
-</a>
-<a href="{% url 'logout' %}" class="btn btn-danger btn-lg">
-<i class="fas fa-sign-out-alt me-2"></i>Logout
-</a>
-<button onclick="window.print()" class="btn btn-success btn-lg">
-<i class="fas fa-print me-2"></i>Print this page
-</button>
-</div>
-</div>
-</div>
-</div>
+                        <!-- Right Side: Principal Sign -->
+                        <div class="col-md-6 col-12">
+                            <div class="h-100 d-flex flex-column justify-content-between align-items-end">
+                                <div class="text-end mb-3">
+                                    <img src="{% static 'WhatsApp_Image_2025-01-26_at_1.58.11_PM_1.jpeg' %}" 
+                                         class="img-fluid" 
+                                         style="max-width: 180px; height: auto; max-height: 50px; object-fit: contain;" 
+                                         alt="Principal Signature">
+                                </div>
+                                <div class="text-end">
+                                    <div class="fw-bold mb-4 fs-6">PRINCIPAL SIGN</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="{% url 'logout' %}" class="btn btn-danger btn-lg">
+                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                    </a>
+                    <button onclick="window.print()" class="btn btn-success btn-lg">
+                        <i class="fas fa-print me-2"></i>Print
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Font Awesome for icons -->
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 
 </html>

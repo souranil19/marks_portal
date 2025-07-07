@@ -138,3 +138,18 @@ body {
     from { opacity: 1; top: 20px; }
     to { opacity: 0; top: -50px; }
   }
+
+
+/* Custom Blinking Animation */
+
+
+  @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        
+        .alert-warning {
+            font-weight: 600;
+            border-radius: 10px !important;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+        }
