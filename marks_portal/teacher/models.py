@@ -11,7 +11,13 @@ class Teacher(models.Model):
     img = models.ImageField(upload_to='teacher_image', null=True, blank=True)
     pdf_document = models.FileField(upload_to='teacher_cv', null=True, blank=True)
 
-
-
     def __str__(self):
         return f"Teacher:{self.teacher} PASSWORD:{self.password}"
+
+
+class ClassAccess(models.Model):
+    class_number = models.IntegerField(unique=True)
+    class_password = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return f"Class {self.class_number}"

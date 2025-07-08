@@ -25,4 +25,6 @@ urlpatterns = [
     path('dashboard/', views.teacher_dashboard, name='teacher_dashboard'),
     path('details-update/', views.teacher_details_update, name='teacher_details_update'),
     path('logout/', views.teacher_logout_view, name='teacher_logout'),
+    path('class-access/<int:class_number>/', views.class_access_view, name='class_access'),
+    path('marks-entry/<int:class_number>/', views.marks_entry_view, name='marks_entry'),
 ]

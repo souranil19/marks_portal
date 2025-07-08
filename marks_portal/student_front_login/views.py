@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Student
+from .models import Student, StudentTermSummary
 
 # ----------------------------
 # LOGIN VIEW
@@ -69,10 +69,40 @@ def login_required(view_func):
 def mark_sheet(request):
     student_id = request.session.get('student_id')
     student = Student.objects.get(id=student_id)
+    
+    # Get or create StudentTermSummary for this student
+    term_summary, created = StudentTermSummary.objects.get_or_create(student=student)
+    
+    # Simple subject list - let JavaScript handle calculations
+    subjects = [
+        ('BENGALI', 'bengali'),
+        ('ENGLISH', 'english'), 
+        ('MATHEMATICS', 'mathematics'),
+        ('PHYSICAL SCIENCE', 'physical_science'),
+        ('LIFE SCIENCE', 'life_science'),
+        ('HISTORY', 'history'),
+        ('GEOGRAPHY', 'geography')
+    ]
+    
+    # Prepare simple subjects data without calculations
+    subjects_data = []
+    for subject_name, subject_code in subjects:
+        subjects_data.append({
+            'name': subject_name,
+            'code': subject_code,
+            'first_theory': getattr(term_summary, f'{subject_code}_first_theory') or 0,
+            'first_practical': getattr(term_summary, f'{subject_code}_first_practical') or 0,
+            'second_theory': getattr(term_summary, f'{subject_code}_second_theory') or 0,
+            'second_practical': getattr(term_summary, f'{subject_code}_second_practical') or 0,
+            'third_theory': getattr(term_summary, f'{subject_code}_third_theory') or 0,
+            'third_practical': getattr(term_summary, f'{subject_code}_third_practical') or 0,
+        })
 
     return render(request, 'marks.html', {
         'student': student,
-        'student_name': student.student_name
+        'student_name': student.student_name,
+        'term_summary': term_summary,
+        'subjects_data': subjects_data
     })
 
 
