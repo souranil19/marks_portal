@@ -12,6 +12,8 @@ class Student(models.Model):
     dob=models.DateField(null=True, blank=True)
     img=models.ImageField(upload_to='student_image',null=True, blank=True)
 
+    def __str__(self):
+        return f"NAME:{self.student}  USERNAME:{self.student_name} PASSWORD:{self.password}"
     
 
 

@@ -64,6 +64,7 @@ def login_required(view_func):
 # ----------------------------
 # PROTECTED VIEW: MARK SHEET
 # ----------------------------
+
 @login_required
 def mark_sheet(request):
     student_id = request.session.get('student_id')
@@ -74,6 +75,12 @@ def mark_sheet(request):
         'student_name': student.student_name
     })
 
+
+
+
+# ----------------------------
+# PROTECTED VIEW: STUDENT DETAILS UPDATE
+# ----------------------------
 
 @login_required
 def details_update(request):

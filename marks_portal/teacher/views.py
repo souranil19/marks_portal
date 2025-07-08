@@ -10,17 +10,17 @@ def teacher_login_page(request):
         return redirect('teacher_dashboard')
 
     if request.method == 'POST':
-        teacher_name = request.POST.get('teacher_name')
+        teacher = request.POST.get('teacher')
         password = request.POST.get('password')
         selection_option = request.POST.get('selection_option')
 
-        if teacher_name and password and selection_option:
+        if teacher and password and selection_option:
             try:
-                teacher = Teacher.objects.get(teacher_name=teacher_name, password=password)
+                teacher_obj = Teacher.objects.get(teacher=teacher, password=password)
 
                 # Store session
-                request.session['teacher_id'] = teacher.id
-                request.session['teacher_name'] = teacher.teacher_name
+                request.session['teacher_password'] = teacher_obj.password
+                request.session['teacher'] = teacher_obj.teacher
                 request.session['teacher_is_authenticated'] = True
                 request.session.set_expiry(1800)  # 30 min
 
@@ -65,50 +65,48 @@ def teacher_login_required(view_func):
 # PROTECTED VIEW: TEACHER DASHBOARD
 # ----------------------------
 
+@teacher_login_required
 def teacher_dashboard(request):
-    teacher_id = request.session.get('teacher_id')
-    teacher = Teacher.objects.get(id=teacher_id)
+    teacher_password = request.session.get('teacher_password')
+    teacher = request.session.get('teacher')
+    teacher_obj = Teacher.objects.get(teacher=teacher, password=teacher_password)
 
     return render(request, 'teacher_dashboard.html', {
-        'teacher': teacher,
-        'teacher_name': teacher.teacher_name
+        'teacher': teacher_obj,
+        'teacher_name': teacher_obj.teacher
     })
+
+
+
+# ----------------------------
+# PROTECTED VIEW: TEACHER DETAILS UPDATE
+# ----------------------------
+
+
 
 
 @teacher_login_required
 def teacher_details_update(request):
-    teacher_id = request.session.get('teacher_id')
-    teacher = Teacher.objects.get(id=teacher_id)
+    teacher_sesson = request.session.get('teacher')
+    teacher = Teacher.objects.get(teacher=teacher_sesson)
     
     if request.method == 'POST':
         # Get form data
-        teacher_code = request.POST.get('teacher')
         mobile = request.POST.get('mobile')
-        subject = request.POST.get('subject')
-        qualification = request.POST.get('qualification')
-        dob = request.POST.get('dob')
         password = request.POST.get('password')
-        address = request.POST.get('address')
         img = request.FILES.get('img')
+        pdf_document = request.FILES.get('pdf_document')
         
         try:
-            # Update teacher fields (excluding teacher_name as it cannot be updated)
-            if teacher_code:
-                teacher.teacher = teacher_code
+            # Update teacher fields
             if mobile:
                 teacher.mobile = int(mobile) if mobile.isdigit() else None
-            if subject:
-                teacher.subject = subject
-            if qualification:
-                teacher.qualification = qualification
-            if dob:
-                teacher.dob = dob
             if password:
                 teacher.password = password
-            if address:
-                teacher.address = address
             if img:
                 teacher.img = img
+            if pdf_document:
+                teacher.pdf_document = pdf_document
             
             # Save the updated teacher
             teacher.save()
@@ -122,5 +120,5 @@ def teacher_details_update(request):
     
     return render(request, 'teacher_details_update.html', {
         'teacher': teacher,
-        'teacher_name': teacher.teacher_name
+        'teacher_name': teacher.teacher
     })

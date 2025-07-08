@@ -11,6 +11,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'home_page.css' %}">
+    
+    <!-- Blinking Animation CSS -->
+    <style>
+        .blink-warning-yellow {
+            animation: blink_yellow 1.5s infinite;
+            color: #ffc107;
+            font-weight: bold;
+        }
+        
+        @keyframes blink_yellow {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -37,24 +55,14 @@
                     <div class="col-lg-8 col-md-10 col-sm-12">
                         <div class="login-container">
                             <div class="text-center mb-4">
-                                <h3>Welcome, {{ teacher_name }}!</h3>
+                                <h3>Welcome, {{ teacher.teacher|upper}}!</h3>
                                 <p class="text-muted">Update your personal details below</p>
                             </div>
                             
                             <!-- Update Form -->
                             <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                 {% csrf_token %}
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="teacher_code" class="form-label">
-                                            <i class="fas fa-id-card me-2"></i>Teacher Code
-                                        </label>
-                                        <input type="text" class="form-control" id="teacher_code" 
-                                               name="teacher" value="{{ teacher.teacher|default:'' }}" required>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
+                                <div class="row justify-content-center">
                                     <div class="col-md-6 mb-3">
                                         <label for="mobile" class="form-label">
                                             <i class="fas fa-phone me-2"></i>Mobile Number
@@ -62,33 +70,8 @@
                                         <input type="number" class="form-control" id="mobile" 
                                                name="mobile" value="{{ teacher.mobile|default:'' }}">
                                     </div>
-                                    
-                                    <div class="col-md-6 mb-3">
-                                        <label for="subject" class="form-label">
-                                            <i class="fas fa-book me-2"></i>Subject
-                                        </label>
-                                        <input type="text" class="form-control" id="subject" 
-                                               name="subject" value="{{ teacher.subject|default:'' }}">
-                                    </div>
                                 </div>
                                 
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="qualification" class="form-label">
-                                            <i class="fas fa-graduation-cap me-2"></i>Qualification
-                                        </label>
-                                        <input type="text" class="form-control" id="qualification" 
-                                               name="qualification" value="{{ teacher.qualification|default:'' }}">
-                                    </div>
-                                    
-                                    <div class="col-md-6 mb-3">
-                                        <label for="dob" class="form-label">
-                                            <i class="fas fa-calendar me-2"></i>Date of Birth
-                                        </label>
-                                        <input type="date" class="form-control" id="dob" 
-                                               name="dob" value="{{ teacher.dob|date:'Y-m-d'|default:'' }}">
-                                    </div>
-                                </div>
                                 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
@@ -111,14 +94,6 @@
                                     </div>
                                 </div>
                                 
-                                <div class="mb-3">
-                                    <label for="address" class="form-label">
-                                        <i class="fas fa-map-marker-alt me-2"></i>Address
-                                    </label>
-                                    <textarea class="form-control" id="address" name="address" 
-                                              rows="3">{{ teacher.address|default:'' }}</textarea>
-                                </div>
-                                
                                 <div class="text-center">
                                     <button type="submit" class="btn login-btn me-3">
                                         <i class="fas fa-save me-2"></i>Update Details
@@ -126,6 +101,15 @@
                                     <a href="{% url 'teacher_logout' %}" class="btn btn-danger ms-3">
                                         <i class="fas fa-sign-out-alt me-2"></i>Logout
                                     </a>
+                                </div>
+                                
+                                <!-- Blinking Warning Message -->
+                                <div class="text-center mt-3">
+                                    <p class="blink-warning-yellow">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>
+                                        Don't forget to click LOGOUT before leaving the page!
+                                        <i class="fas fa-exclamation-triangle ms-2"></i>
+                                    </p>
                                 </div>
                             </form>
                         </div>

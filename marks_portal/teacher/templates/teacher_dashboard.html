@@ -13,6 +13,23 @@
     <link rel="stylesheet" href="{% static 'home_page.css' %}">
     <script src="{% static 'toast.js' %}"></script>
     
+    <!-- Blinking Animation CSS -->
+    <style>
+        .blink-warning-red {
+            animation: blink_red 1.5s infinite;
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        @keyframes blink_red {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -36,7 +53,7 @@
             <div class="col-lg-8">
                 <div class="card shadow-lg">
                     <div class="card-header bg-primary text-white text-center">
-                        <h3><i class="fas fa-chalkboard-teacher me-2"></i>Welcome, {{ teacher_name }}!</h3>
+                        <h3><i class="fas fa-chalkboard-teacher me-2"></i>Welcome {{ teacher.teacher }}!</h3>
                     </div>
                     <div class="card-body text-center">
                         <p class="lead">Welcome to your teacher dashboard. Here you can manage your profile and access various teaching tools.</p>
@@ -47,16 +64,9 @@
                                 <div class="card h-100">
                                     <div class="card-body">
                                         <h5 class="card-title"><i class="fas fa-user me-2"></i>Teacher Information</h5>
-                                        <p><strong>Name:</strong> {{ teacher.teacher_name }}</p>
-                                        {% if teacher.subject %}
-                                            <p><strong>Subject:</strong> {{ teacher.subject }}</p>
-                                        {% endif %}
-                                        {% if teacher.qualification %}
-                                            <p><strong>Qualification:</strong> {{ teacher.qualification }}</p>
-                                        {% endif %}
-                                        {% if teacher.mobile %}
-                                            <p><strong>Mobile:</strong> {{ teacher.mobile }}</p>
-                                        {% endif %}
+                                        <p><strong>NAME:</strong> {{ teacher.teacher }}</p>
+                                        <p><strong>MOBILE:</strong> {{ teacher.mobile }}</p>
+                                        <p><strong>PASSWORD:</strong> {{ teacher.password }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -91,12 +101,79 @@
                             </div>
                         </div>
 
-                        <!-- Back to Main Page -->
-                        <div class="row mt-3">
+                        <!-- Blinking Warning Message -->
+                        <div class="text-center mt-3">
+                            <p class="blink-warning-red">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                Don't forget to click LOGOUT before leaving the page!
+                                <i class="fas fa-exclamation-triangle ms-2"></i>
+                            </p>
+                        </div>
+
+                        <!-- Class Selection Buttons -->
+                        <div class="row mt-4">
                             <div class="col-12">
-                                <a href="{% url 'landing_page' %}" class="btn btn-secondary btn-lg w-100">
-                                    <i class="fas fa-home me-2"></i>Go Back to Main Page
-                                </a>
+                                <h4 class="text-center mb-3"><i class="fas fa-graduation-cap me-2"></i>Select Class</h4>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 1
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 2
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 3
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 4
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 5
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 6
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 7
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 8
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 9
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 10
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 11
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                                <button type="button" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-school me-2"></i>Class 12
+                                </button>
                             </div>
                         </div>
                     </div>

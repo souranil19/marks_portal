@@ -65,3 +65,14 @@ body{
     from { opacity: 1; top: 20px; }
     to { opacity: 0; top: -50px; }
   }
+
+  /* Blink animation for important messages */
+  
+
+  .blink-warning-yellow {
+    color: #ffc107;
+    font-weight: bold;
+    font-size: 1.1rem;
+    animation: blink 1.5s infinite;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  }
