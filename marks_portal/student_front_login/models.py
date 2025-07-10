@@ -78,5 +78,5 @@ class StudentTermSummary(models.Model):
     geography_third_theory = models.IntegerField(null=True, blank=True)
     geography_third_practical = models.IntegerField(null=True, blank=True)
 
-    
-
+    def __str__(self):
+        return f"Class: {self.student.std}"
