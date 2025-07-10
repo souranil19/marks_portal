@@ -170,10 +170,6 @@ def marks_entry_view(request, class_number):
     
     if request.method == 'POST':
         student_id = request.POST.get('student_id')
-        subject = request.POST.get('subject')
-        term = request.POST.get('term')
-        mark_type = request.POST.get('mark_type')  # theory or practical
-        marks = request.POST.get('marks')
         
         try:
             student = Student.objects.get(id=student_id)
@@ -181,19 +177,69 @@ def marks_entry_view(request, class_number):
             # Get or create StudentTermSummary for this student
             term_summary, created = StudentTermSummary.objects.get_or_create(student=student)
             
-            # Create the field name dynamically
-            field_name = f"{subject}_{term}_{mark_type}"
+            # Define all possible field names that can be updated
+            field_names = [
+                'bengali_first_theory', 'bengali_first_practical',
+                'bengali_second_theory', 'bengali_second_practical',
+                'bengali_third_theory', 'bengali_third_practical',
+                'english_first_theory', 'english_first_practical',
+                'english_second_theory', 'english_second_practical',
+                'english_third_theory', 'english_third_practical',
+                'mathematics_first_theory', 'mathematics_first_practical',
+                'mathematics_second_theory', 'mathematics_second_practical',
+                'mathematics_third_theory', 'mathematics_third_practical',
+                'physical_science_first_theory', 'physical_science_first_practical',
+                'physical_science_second_theory', 'physical_science_second_practical',
+                'physical_science_third_theory', 'physical_science_third_practical',
+                'life_science_first_theory', 'life_science_first_practical',
+                'life_science_second_theory', 'life_science_second_practical',
+                'life_science_third_theory', 'life_science_third_practical',
+                'history_first_theory', 'history_first_practical',
+                'history_second_theory', 'history_second_practical',
+                'history_third_theory', 'history_third_practical',
+                'geography_first_theory', 'geography_first_practical',
+                'geography_second_theory', 'geography_second_practical',
+                'geography_third_theory', 'geography_third_practical'
+            ]
             
-            # Update the marks
-            if hasattr(term_summary, field_name):
-                setattr(term_summary, field_name, int(marks))
-                term_summary.save()
-                messages.success(request, f'Marks updated successfully for {student.student_name}!')
+            # Update marks for all fields that have values
+            updated_fields = []
+            for field_name in field_names:
+                field_value = request.POST.get(field_name)
+                if field_value and field_value.strip():  # Only update non-empty values
+                    try:
+                        # Convert to integer and validate
+                        marks_value = int(field_value)
+                        
+                        # Determine max value based on field type
+                        if 'theory' in field_name:
+                            max_value = 70
+                        elif 'practical' in field_name:
+                            max_value = 30
+                        else:
+                            max_value = 100  # fallback
+                        
+                        # Validate range
+                        if 0 <= marks_value <= max_value:
+                            setattr(term_summary, field_name, marks_value)
+                            updated_fields.append(field_name)
+                        else:
+                            messages.warning(request, f'Invalid value for {field_name}: {marks_value}. Should be between 0 and {max_value}.')
+                    except ValueError:
+                        continue  # Skip invalid values
+            
+            # Save the updated term summary
+            term_summary.save()
+            
+            if updated_fields:
+                messages.success(request, f'Marks updated successfully for {student.student_name}! Updated {len(updated_fields)} fields.')
             else:
-                messages.error(request, 'Invalid subject or term selection.')
+                messages.warning(request, f'No valid marks found to update for {student.student_name}.')
                 
-        except (Student.DoesNotExist, ValueError) as e:
-            messages.error(request, 'Error updating marks. Please check your inputs.')
+        except Student.DoesNotExist:
+            messages.error(request, 'Student not found.')
+        except Exception as e:
+            messages.error(request, f'Error updating marks: {str(e)}')
     
     # Get existing marks for display
     students_with_marks = []

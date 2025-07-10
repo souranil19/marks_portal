@@ -42,157 +42,279 @@
                             {% endfor %}
                         {% endif %}
 
-                        <!-- Marks Entry Form -->
-                        <div class="row mb-4">
-                            <div class="col-12">
-                                <div class="card border-primary">
-                                    <div class="card-header bg-primary text-white">
-                                        <h5><i class="fas fa-plus me-2"></i>Enter Marks</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <form method="POST" class="row g-3">
-                                            {% csrf_token %}
-                                            
-                                            <div class="col-md-6 col-lg-3">
-                                                <label for="student_id" class="form-label">Student</label>
-                                                <select class="form-select" id="student_id" name="student_id" required>
-                                                    <option value="">Select Student</option>
-                                                    {% for item in students_with_marks %}
-                                                        <option value="{{ item.student.id }}">{{ item.student.student_name }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
 
-                                            <div class="col-md-6 col-lg-2">
-                                                <label for="subject" class="form-label">Subject</label>
-                                                <select class="form-select" id="subject" name="subject" required>
-                                                    <option value="">Select Subject</option>
-                                                    {% for subject in subjects %}
-                                                        <option value="{{ subject }}">{{ subject|title }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
 
-                                            <div class="col-md-4 col-lg-2">
-                                                <label for="term" class="form-label">Term</label>
-                                                <select class="form-select" id="term" name="term" required>
-                                                    <option value="">Select Term</option>
-                                                    {% for term in terms %}
-                                                        <option value="{{ term }}">{{ term|title }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-4 col-lg-2">
-                                                <label for="mark_type" class="form-label">Type</label>
-                                                <select class="form-select" id="mark_type" name="mark_type" required>
-                                                    <option value="">Select Type</option>
-                                                    {% for mark_type in mark_types %}
-                                                        <option value="{{ mark_type }}">{{ mark_type|title }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-6 col-lg-2">
-                                                <label for="marks" class="form-label">Marks</label>
-                                                <input type="number" class="form-control" id="marks" name="marks">
-                                            </div>
-
-                                            <div class="col-12 col-lg-1 d-flex align-items-end">
-                                                <button type="submit" class="btn btn-success w-100">
-                                                    <i class="fas fa-save me-1"></i>Save
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Students List with Current Marks -->
+                        <!-- Students List with Direct Marks Entry -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="card border-info">
                                     <div class="card-header bg-info text-white">
-                                        <h5><i class="fas fa-users me-2"></i>Students in Class {{ class_number }}</h5>
+                                        <h5><i class="fas fa-users me-2"></i>Students in Class {{ class_number }} - Direct Marks Entry</h5>
                                     </div>
                                     <div class="card-body">
                                         {% if students_with_marks %}
-                                            <div class="table-responsive">
-                                                <table class="table table-striped table-hover">
-                                                    <thead class="table-dark">
-                                                        <tr>
-                                                            <th>Student Name</th>
-                                                            <th>Bengali</th>
-                                                            <th>English</th>
-                                                            <th>Mathematics</th>
-                                                            <th>Physical Science</th>
-                                                            <th>Life Science</th>
-                                                            <th>History</th>
-                                                            <th>Geography</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {% for item in students_with_marks %}
-                                                            <tr>
-                                                                <td>
-                                                                    <strong>{{ item.student.student_name }}</strong><br>
-                                                                    <small class="text-muted">{{ item.student.student }}</small>
-                                                                </td>
-                                                                <td>
-                                                                    <small>
-                                                                        <div>1st: {{ item.term_summary.bengali_first_theory|default:'-' }}/{{ item.term_summary.bengali_first_practical|default:'-' }}</div>
-                                                                        <div>2nd: {{ item.term_summary.bengali_second_theory|default:'-' }}/{{ item.term_summary.bengali_second_practical|default:'-' }}</div>
-                                                                        <div>3rd: {{ item.term_summary.bengali_third_theory|default:'-' }}/{{ item.term_summary.bengali_third_practical|default:'-' }}</div>
-                                                                    </small>
-                                                                </td>
-                                                                <td>
-                                                                    <small>
-                                                                        <div>1st: {{ item.term_summary.english_first_theory|default:'-' }}/{{ item.term_summary.english_first_practical|default:'-' }}</div>
-                                                                        <div>2nd: {{ item.term_summary.english_second_theory|default:'-' }}/{{ item.term_summary.english_second_practical|default:'-' }}</div>
-                                                                        <div>3rd: {{ item.term_summary.english_third_theory|default:'-' }}/{{ item.term_summary.english_third_practical|default:'-' }}</div>
-                                                                    </small>
-                                                                </td>
-                                                                <td>
-                                                                    <small>
-                                                                        <div>1st: {{ item.term_summary.mathematics_first_theory|default:'-' }}/{{ item.term_summary.mathematics_first_practical|default:'-' }}</div>
-                                                                        <div>2nd: {{ item.term_summary.mathematics_second_theory|default:'-' }}/{{ item.term_summary.mathematics_second_practical|default:'-' }}</div>
-                                                                        <div>3rd: {{ item.term_summary.mathematics_third_theory|default:'-' }}/{{ item.term_summary.mathematics_third_practical|default:'-' }}</div>
-                                                                    </small>
-                                                                </td>
-                                                                <td>
-                                                                    <small>
-                                                                        <div>1st: {{ item.term_summary.physical_science_first_theory|default:'-' }}/{{ item.term_summary.physical_science_first_practical|default:'-' }}</div>
-                                                                        <div>2nd: {{ item.term_summary.physical_science_second_theory|default:'-' }}/{{ item.term_summary.physical_science_second_practical|default:'-' }}</div>
-                                                                        <div>3rd: {{ item.term_summary.physical_science_third_theory|default:'-' }}/{{ item.term_summary.physical_science_third_practical|default:'-' }}</div>
-                                                                    </small>
-                                                                </td>
-                                                                <td>
-                                                                    <small>
-                                                                        <div>1st: {{ item.term_summary.life_science_first_theory|default:'-' }}/{{ item.term_summary.life_science_first_practical|default:'-' }}</div>
-                                                                        <div>2nd: {{ item.term_summary.life_science_second_theory|default:'-' }}/{{ item.term_summary.life_science_second_practical|default:'-' }}</div>
-                                                                        <div>3rd: {{ item.term_summary.life_science_third_theory|default:'-' }}/{{ item.term_summary.life_science_third_practical|default:'-' }}</div>
-                                                                    </small>
-                                                                </td>
-                                                                <td>
-                                                                    <small>
-                                                                        <div>1st: {{ item.term_summary.history_first_theory|default:'-' }}/{{ item.term_summary.history_first_practical|default:'-' }}</div>
-                                                                        <div>2nd: {{ item.term_summary.history_second_theory|default:'-' }}/{{ item.term_summary.history_second_practical|default:'-' }}</div>
-                                                                        <div>3rd: {{ item.term_summary.history_third_theory|default:'-' }}/{{ item.term_summary.history_third_practical|default:'-' }}</div>
-                                                                    </small>
-                                                                </td>
-                                                                <td>
-                                                                    <small>
-                                                                        <div>1st: {{ item.term_summary.geography_first_theory|default:'-' }}/{{ item.term_summary.geography_first_practical|default:'-' }}</div>
-                                                                        <div>2nd: {{ item.term_summary.geography_second_theory|default:'-' }}/{{ item.term_summary.geography_second_practical|default:'-' }}</div>
-                                                                        <div>3rd: {{ item.term_summary.geography_third_theory|default:'-' }}/{{ item.term_summary.geography_third_practical|default:'-' }}</div>
-                                                                    </small>
-                                                                </td>
-                                                            </tr>
-                                                        {% endfor %}
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            {% for item in students_with_marks %}
+                                                <div class="card mb-4 border-secondary student-card">
+                                                    <div class="card-header bg-light">
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <h6 class="mb-0">
+                                                                <i class="fas fa-user me-2"></i>
+                                                                <strong>{{ item.student.student_name }}</strong>
+                                                                <small class="text-muted ms-2">({{ item.student.student }})</small>
+                                                            </h6>
+                                                            <small class="badge bg-secondary">Fill any fields & save</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <form method="POST" class="student-marks-form" data-student-id="{{ item.student.id }}">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="student_id" value="{{ item.student.id }}">
+                                                            
+                                                            <div class="marks-grid">
+                                                                <!-- Bengali -->
+                                                                <div class="subject-section">
+                                                                    <h6 class="text-primary subject-header">
+                                                                        <i class="fas fa-book me-2"></i>Bengali
+                                                                    </h6>
+                                                                    <div class="row g-2">
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="bengali_first_theory" value="{{ item.term_summary.bengali_first_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="bengali_first_practical" value="{{ item.term_summary.bengali_first_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="bengali_second_theory" value="{{ item.term_summary.bengali_second_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="bengali_second_practical" value="{{ item.term_summary.bengali_second_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="bengali_third_theory" value="{{ item.term_summary.bengali_third_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="bengali_third_practical" value="{{ item.term_summary.bengali_third_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- English -->
+                                                                <div class="subject-section">
+                                                                    <h6 class="text-primary subject-header">
+                                                                        <i class="fas fa-language me-2"></i>English
+                                                                    </h6>
+                                                                    <div class="row g-2">
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="english_first_theory" value="{{ item.term_summary.english_first_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="english_first_practical" value="{{ item.term_summary.english_first_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="english_second_theory" value="{{ item.term_summary.english_second_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="english_second_practical" value="{{ item.term_summary.english_second_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="english_third_theory" value="{{ item.term_summary.english_third_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="english_third_practical" value="{{ item.term_summary.english_third_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Mathematics -->
+                                                                <div class="subject-section">
+                                                                    <h6 class="text-primary subject-header">
+                                                                        <i class="fas fa-calculator me-2"></i>Mathematics
+                                                                    </h6>
+                                                                    <div class="row g-2">
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="mathematics_first_theory" value="{{ item.term_summary.mathematics_first_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="mathematics_first_practical" value="{{ item.term_summary.mathematics_first_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="mathematics_second_theory" value="{{ item.term_summary.mathematics_second_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="mathematics_second_practical" value="{{ item.term_summary.mathematics_second_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="mathematics_third_theory" value="{{ item.term_summary.mathematics_third_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="mathematics_third_practical" value="{{ item.term_summary.mathematics_third_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Physical Science -->
+                                                                <div class="subject-section">
+                                                                    <h6 class="text-primary subject-header">
+                                                                        <i class="fas fa-flask me-2"></i>Physical Science
+                                                                    </h6>
+                                                                    <div class="row g-2">
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="physical_science_first_theory" value="{{ item.term_summary.physical_science_first_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="physical_science_first_practical" value="{{ item.term_summary.physical_science_first_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="physical_science_second_theory" value="{{ item.term_summary.physical_science_second_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="physical_science_second_practical" value="{{ item.term_summary.physical_science_second_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="physical_science_third_theory" value="{{ item.term_summary.physical_science_third_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="physical_science_third_practical" value="{{ item.term_summary.physical_science_third_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Life Science -->
+                                                                <div class="subject-section">
+                                                                    <h6 class="text-primary subject-header">
+                                                                        <i class="fas fa-leaf me-2"></i>Life Science
+                                                                    </h6>
+                                                                    <div class="row g-2">
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="life_science_first_theory" value="{{ item.term_summary.life_science_first_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="life_science_first_practical" value="{{ item.term_summary.life_science_first_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="life_science_second_theory" value="{{ item.term_summary.life_science_second_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="life_science_second_practical" value="{{ item.term_summary.life_science_second_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="life_science_third_theory" value="{{ item.term_summary.life_science_third_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="life_science_third_practical" value="{{ item.term_summary.life_science_third_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- History -->
+                                                                <div class="subject-section">
+                                                                    <h6 class="text-primary subject-header">
+                                                                        <i class="fas fa-landmark me-2"></i>History
+                                                                    </h6>
+                                                                    <div class="row g-2">
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="history_first_theory" value="{{ item.term_summary.history_first_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="history_first_practical" value="{{ item.term_summary.history_first_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="history_second_theory" value="{{ item.term_summary.history_second_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="history_second_practical" value="{{ item.term_summary.history_second_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="history_third_theory" value="{{ item.term_summary.history_third_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="history_third_practical" value="{{ item.term_summary.history_third_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Geography -->
+                                                                <div class="subject-section">
+                                                                    <h6 class="text-primary subject-header">
+                                                                        <i class="fas fa-globe me-2"></i>Geography
+                                                                    </h6>
+                                                                    <div class="row g-2">
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="geography_first_theory" value="{{ item.term_summary.geography_first_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">1st Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="geography_first_practical" value="{{ item.term_summary.geography_first_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="geography_second_theory" value="{{ item.term_summary.geography_second_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">2nd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="geography_second_practical" value="{{ item.term_summary.geography_second_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Theory</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="geography_third_theory" value="{{ item.term_summary.geography_third_theory|default:'' }}" min="0" max="70" placeholder="0-70">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label class="form-label small">3rd Practical</label>
+                                                                            <input type="number" class="form-control form-control-sm" name="geography_third_practical" value="{{ item.term_summary.geography_third_practical|default:'' }}" min="0" max="30" placeholder="0-30">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <!-- Save Button -->
+                                                            <div class="row mt-3">
+                                                                <div class="col-12 text-center">
+                                                                    <button type="submit" class="btn btn-success btn-lg">
+                                                                        <i class="fas fa-save me-2"></i>Save All Marks for {{ item.student.student_name }}
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
                                         {% else %}
                                             <div class="text-center py-4">
                                                 <i class="fas fa-user-slash fa-3x text-muted mb-3"></i>
@@ -213,6 +335,48 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
+    <!-- Custom CSS -->
+    <style>
+        .student-marks-form {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .form-control-sm {
+            font-size: 0.875rem;
+        }
+        
+        .subject-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .student-card {
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        .student-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .subject-header {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .marks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+    
     <script>
         // Auto-hide alerts after 5 seconds
         setTimeout(function() {
@@ -222,6 +386,54 @@
                 alertInstance.close();
             });
         }, 5000);
+        
+        // Add form submission handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('.student-marks-form');
+            
+            forms.forEach(function(form) {
+                // Form submission handling
+                form.addEventListener('submit', function(e) {
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    
+                    // Show loading state
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Saving...';
+                    submitButton.disabled = true;
+                    
+                    // Reset after 3 seconds if form doesn't submit
+                    setTimeout(function() {
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    }, 3000);
+                });
+            });
+            
+            // Add input validation
+            const numberInputs = document.querySelectorAll('input[type="number"]');
+            numberInputs.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    const value = parseInt(this.value);
+                    const maxValue = parseInt(this.getAttribute('max'));
+                    
+                    if (value < 0) {
+                        this.value = 0;
+                    } else if (value > maxValue) {
+                        this.value = maxValue;
+                    }
+                });
+                
+                // Add visual feedback for filled inputs
+                input.addEventListener('blur', function() {
+                    if (this.value !== '') {
+                        this.classList.add('border-success');
+                        this.classList.remove('border-danger');
+                    } else {
+                        this.classList.remove('border-success', 'border-danger');
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
