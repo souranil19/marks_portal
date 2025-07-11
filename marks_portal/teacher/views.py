@@ -177,30 +177,17 @@ def marks_entry_view(request, class_number):
             # Get or create StudentTermSummary for this student
             term_summary, created = StudentTermSummary.objects.get_or_create(student=student)
             
-            # Define all possible field names that can be updated
-            field_names = [
-                'bengali_first_theory', 'bengali_first_practical',
-                'bengali_second_theory', 'bengali_second_practical',
-                'bengali_third_theory', 'bengali_third_practical',
-                'english_first_theory', 'english_first_practical',
-                'english_second_theory', 'english_second_practical',
-                'english_third_theory', 'english_third_practical',
-                'mathematics_first_theory', 'mathematics_first_practical',
-                'mathematics_second_theory', 'mathematics_second_practical',
-                'mathematics_third_theory', 'mathematics_third_practical',
-                'physical_science_first_theory', 'physical_science_first_practical',
-                'physical_science_second_theory', 'physical_science_second_practical',
-                'physical_science_third_theory', 'physical_science_third_practical',
-                'life_science_first_theory', 'life_science_first_practical',
-                'life_science_second_theory', 'life_science_second_practical',
-                'life_science_third_theory', 'life_science_third_practical',
-                'history_first_theory', 'history_first_practical',
-                'history_second_theory', 'history_second_practical',
-                'history_third_theory', 'history_third_practical',
-                'geography_first_theory', 'geography_first_practical',
-                'geography_second_theory', 'geography_second_practical',
-                'geography_third_theory', 'geography_third_practical'
-            ]
+            # Define subjects, terms, and mark types
+            subjects = ['bengali', 'english', 'mathematics', 'physical_science', 'life_science', 'history', 'geography']
+            terms = ['first', 'second', 'third']
+            mark_types = ['theory', 'practical']
+            
+            # Dynamically generate all possible field names
+            field_names = []
+            for subject in subjects:
+                for term in terms:
+                    for mark_type in mark_types:
+                        field_names.append(f"{subject}_{term}_{mark_type}")
             
             # Update marks for all fields that have values
             updated_fields = []
@@ -212,19 +199,15 @@ def marks_entry_view(request, class_number):
                         marks_value = int(field_value)
                         
                         # Determine max value based on field type
-                        if 'theory' in field_name:
-                            max_value = 70
-                        elif 'practical' in field_name:
-                            max_value = 30
-                        else:
-                            max_value = 100  # fallback
+                        max_value = 70 if 'theory' in field_name else 30
                         
                         # Validate range
                         if 0 <= marks_value <= max_value:
                             setattr(term_summary, field_name, marks_value)
                             updated_fields.append(field_name)
                         else:
-                            messages.warning(request, f'Invalid value for {field_name}: {marks_value}. Should be between 0 and {max_value}.')
+                            field_display = field_name.replace('_', ' ').title()
+                            messages.warning(request, f'Invalid value for {field_display}: {marks_value}. Should be between 0 and {max_value}.')
                     except ValueError:
                         continue  # Skip invalid values
             
