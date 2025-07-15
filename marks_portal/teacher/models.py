@@ -10,6 +10,9 @@ class Teacher(models.Model):
     mobile = models.IntegerField(null=True, blank=True)
     img = models.ImageField(upload_to='teacher_image', null=True, blank=True)
     pdf_document = models.FileField(upload_to='teacher_cv', null=True, blank=True)
+    designation=models.CharField(max_length=10, null=True, blank=True)
+    qualification=models.CharField(max_length=20, null=True, blank=True)
+    department=models.CharField(max_length=10, null=True, blank=True)
 
     def __str__(self):
         return f"Teacher:{self.teacher} PASSWORD:{self.password}"
