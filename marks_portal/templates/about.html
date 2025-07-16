@@ -1,0 +1,498 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Muraripukur Government Sponsored Higher Secondary School</title>
+    <meta
+      name="description"
+      content="Learn about Muraripukur Government Sponsored Higher Secondary School's history, mission, vision, and commitment to educational excellence since 1985."
+    />
+    <link rel="stylesheet" href="{% static 'test.css' %}" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <!-- Logo and School Name -->
+          <a href="index.html" class="logo">
+            <div class="logo-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="logo-text">
+              <h1>Muraripukur Govt. Higher Secondary School</h1>
+              <p class="logo-tagline">Excellence in Education</p>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <nav class="nav-desktop">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="#academics" class="nav-link">Academics</a>
+            <a href="#admissions" class="nav-link">Admissions</a>
+            <a href="#faculty" class="nav-link">Faculty</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#contact" class="nav-link">Contact</a>
+          </nav>
+
+          <!-- CTA Button -->
+          <div class="header-cta">
+            <a href="#marks-portal" class="marks-portal-btn">
+              <i class="fas fa-chart-line"></i> Marks Portal
+            </a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars" id="menuIcon"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-content">
+          <a href="index.html" class="mobile-nav-link">Home</a>
+          <a href="about.html" class="mobile-nav-link">About</a>
+          <a href="#academics" class="mobile-nav-link">Academics</a>
+          <a href="#admissions" class="mobile-nav-link">Admissions</a>
+          <a href="#faculty" class="mobile-nav-link">Faculty</a>
+          <a href="#gallery" class="mobile-nav-link">Gallery</a>
+          <a href="#contact" class="mobile-nav-link">Contact</a>
+          <a href="#marks-portal" class="marks-portal-btn mobile-cta">
+            <i class="fas fa-chart-line"></i> Marks Portal
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="hero-title">
+              About
+              <span class="hero-highlight">Muraripukur Government Sponsored Higher Secondary School</span>
+            </h1>
+            <p class="hero-description">
+              Discover our journey of educational excellence spanning over two
+              decades of nurturing young minds and building tomorrow's leaders.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Content -->
+    <main id="main-content">
+      <!-- Our Story Section -->
+      <section class="about">
+        <div class="container">
+          <div class="about-content">
+            <div class="about-text">
+              <h2 class="section-title">Our Story</h2>
+              <p class="about-description">
+                Founded in 1985 with a vision to provide holistic education,
+                Muraripukur Government Sponsored Higher Secondary School has grown from a small institution with 50
+                students to one of West Bengal's most respected educational
+                establishments, serving over 1000 students today.
+              </p>
+              <p class="about-description">
+                Our founders, Dr. Rajesh Kumar and Mrs. Priya Sharma, believed
+                that education should not only focus on academic excellence but
+                also on character building, cultural values, and global
+                awareness. This philosophy continues to guide us today.
+              </p>
+              <p class="about-description">
+                Over the years, we have consistently maintained our commitment
+                to providing quality education while adapting to modern teaching
+                methodologies and technological advancements. Our graduates have
+                gone on to excel in various fields, from medicine and
+                engineering to arts and entrepreneurship.
+              </p>
+            </div>
+            <div class="about-mission">
+              <div class="mission-card">
+                <h3>Our Vision</h3>
+                <div class="mission-items">
+                  <div class="mission-item">
+                    <i class="fas fa-eye"></i>
+                    <p>
+                      To be a leading educational institution that nurtures
+                      confident, creative, and compassionate global citizens
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission & Values -->
+      <section class="facilities">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Our Mission & Core Values</h2>
+            <p class="section-description">
+              The principles that guide our educational approach and shape our
+              school community.
+            </p>
+          </div>
+          <div class="facilities-grid">
+            <div class="facility-card">
+              <div class="facility-icon">
+                <i class="fas fa-heart"></i>
+              </div>
+              <h3>Compassion</h3>
+              <p>
+                We foster empathy, kindness, and understanding in our students,
+                teaching them to care for others and contribute positively to
+                society.
+              </p>
+            </div>
+            <div class="facility-card">
+              <div class="facility-icon">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <h3>Innovation</h3>
+              <p>
+                We encourage creative thinking, problem-solving, and the courage
+                to explore new ideas and approaches to learning and life.
+              </p>
+            </div>
+            <div class="facility-card">
+              <div class="facility-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <h3>Excellence</h3>
+              <p>
+                We strive for the highest standards in everything we do, from
+                academic achievement to character development and community
+                service.
+              </p>
+            </div>
+            <div class="facility-card">
+              <div class="facility-icon">
+                <i class="fas fa-hands-helping"></i>
+              </div>
+              <h3>Integrity</h3>
+              <p>
+                We uphold honesty, transparency, and ethical behavior in all our
+                interactions, building trust within our school community.
+              </p>
+            </div>
+            <div class="facility-card">
+              <div class="facility-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h3>Inclusivity</h3>
+              <p>
+                We celebrate diversity and ensure that every student feels
+                valued, respected, and supported in their educational journey.
+              </p>
+            </div>
+            <div class="facility-card">
+              <div class="facility-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <h3>Sustainability</h3>
+              <p>
+                We teach environmental consciousness and responsible
+                citizenship, preparing students to be stewards of our planet.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leadership Team -->
+      <section class="achievements">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Leadership Team</h2>
+            <p class="section-description">
+              Meet the dedicated professionals who guide our educational
+              mission.
+            </p>
+          </div>
+          <div class="achievements-grid">
+            <div class="achievement-card">
+              <div class="achievement-icon">
+                <i class="fas fa-user-tie"></i>
+              </div>
+              <h3>Dr. Anjali Patel</h3>
+              <p>
+                Principal & Educational Leader<br />
+                Ph.D. in Educational Psychology<br />
+                15+ years in education
+              </p>
+            </div>
+            <div class="achievement-card">
+              <div class="achievement-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+              </div>
+              <h3>Mr. Vikram Singh</h3>
+              <p>
+                Vice Principal & Academic Head<br />
+                M.Ed. in Curriculum Development<br />
+                12+ years in academic leadership
+              </p>
+            </div>
+            <div class="achievement-card">
+              <div class="achievement-icon">
+                <i class="fas fa-user-graduate"></i>
+              </div>
+              <h3>Mrs. Meera Reddy</h3>
+              <p>
+                Student Affairs Coordinator<br />
+                M.A. in Child Psychology<br />
+                10+ years in student development
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Educational Philosophy -->
+      <section class="about">
+        <div class="container">
+          <div class="about-content">
+            <div class="about-mission">
+              <div class="mission-card">
+                <h3>Our Educational Philosophy</h3>
+                <div class="mission-items">
+                  <div class="mission-item">
+                    <i class="fas fa-brain"></i>
+                    <p>
+                      <strong>Holistic Development:</strong> We believe in
+                      nurturing the intellectual, emotional, physical, and
+                      spiritual growth of every student.
+                    </p>
+                  </div>
+                  <div class="mission-item">
+                    <i class="fas fa-seedling"></i>
+                    <p>
+                      <strong>Personalized Learning:</strong> We recognize that
+                      each child is unique and adapt our teaching methods to
+                      suit individual learning styles.
+                    </p>
+                  </div>
+                  <div class="mission-item">
+                    <i class="fas fa-globe"></i>
+                    <p>
+                      <strong>Global Perspective:</strong> We prepare students
+                      to be global citizens while staying rooted in Indian
+                      values and culture.
+                    </p>
+                  </div>
+                  <div class="mission-item">
+                    <i class="fas fa-handshake"></i>
+                    <p>
+                      <strong>Community Partnership:</strong> We believe in
+                      strong collaboration between school, family, and community
+                      for student success.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="about-text">
+              <h2 class="section-title">Why Choose Muraripukur?</h2>
+              <p class="about-description">
+                At Muraripukur Government Sponsored Higher Secondary School, we don't just teach subjects; we shape
+                futures. Our comprehensive approach to education ensures that
+                students develop critical thinking skills, emotional
+                intelligence, and a strong moral compass.
+              </p>
+              <p class="about-description">
+                Our state-of-the-art facilities, experienced faculty, and
+                innovative teaching methods create an environment where students
+                can discover their passions, develop their talents, and prepare
+                for success in an ever-changing world.
+              </p>
+              <p class="about-description">
+                We are proud of our track record of academic excellence, with
+                95% of our students achieving their first-choice university
+                admissions and many receiving prestigious scholarships and
+                awards.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recognition & Accreditation -->
+      <section class="news-events">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Recognition & Accreditation</h2>
+            <p class="section-description">
+              Our commitment to excellence has been recognized by leading
+              educational bodies.
+            </p>
+          </div>
+          <div class="news-grid">
+            <div class="news-card">
+              <div class="news-image saffron-gradient">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <div class="news-content">
+                <div class="news-date">2024</div>
+                <h3>CBSE Affiliation</h3>
+                <p>
+                  Affiliated with the Central Board of Secondary Education,
+                  ensuring high academic standards and recognized certification.
+                </p>
+              </div>
+            </div>
+            <div class="news-card">
+              <div class="news-image emerald-gradient">
+                <i class="fas fa-award"></i>
+              </div>
+              <div class="news-content">
+                <div class="news-date">2023</div>
+                <h3>ISO 9001:2015 Certified</h3>
+                <p>
+                  Quality management system certification recognizing our
+                  commitment to continuous improvement and excellence.
+                </p>
+              </div>
+            </div>
+            <div class="news-card">
+              <div class="news-image gold-gradient">
+                <i class="fas fa-medal"></i>
+              </div>
+              <div class="news-content">
+                <div class="news-date">2023</div>
+                <h3>Best School Award</h3>
+                <p>
+                  Recognized as the "Best School for Holistic Education" by the
+                  Maharashtra Education Excellence Awards.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta">
+        <div class="container">
+          <div class="cta-content">
+            <h2>Join the Muraripukur Family</h2>
+            <p>
+              Experience the difference of quality education rooted in values.
+              Schedule a visit to see our campus and meet our dedicated team.
+            </p>
+            <div class="cta-buttons">
+              <a href="#admissions" class="btn btn-primary">Apply Now</a>
+              <a href="#contact" class="btn btn-outline"
+                >Schedule Campus Tour</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <!-- School Info -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              <div class="logo-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="logo-text">
+                <h3>Muraripukur Govt. Higher Secondary School</h3>
+                <p>Excellence in Education</p>
+              </div>
+            </div>
+            <p class="footer-description">
+              Nurturing young minds since 1985, we are committed to providing
+              holistic education that prepares students for a bright future.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="#academics">Academics</a></li>
+              <li><a href="#admissions">Admissions</a></li>
+              <li><a href="#faculty">Faculty</a></li>
+            </ul>
+          </div>
+
+          <!-- Programs -->
+          <div class="footer-section">
+            <h4>Programs</h4>
+            <ul class="footer-links">
+              <li><a href="#academics">Primary School</a></li>
+              <li><a href="#academics">Middle School</a></li>
+              <li><a href="#academics">High School</a></li>
+              <li><a href="#academics">Senior Secondary</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="footer-section">
+            <h4>Contact Us</h4>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>
+                  Muraripukur, Birbhum,<br />West Bengal<br />India
+                  731216
+                </p>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <p>+91 3463 123456</p>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <p>info@muraripukur.edu.in</p>
+              </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="social-media">
+              <h5>Follow Us</h5>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+          <p>&copy; 2024 Muraripukur Government Sponsored Higher Secondary School. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+  </body>
+</html>
