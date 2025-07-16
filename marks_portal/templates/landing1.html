@@ -26,7 +26,7 @@
               <i class="fas fa-graduation-cap"></i>
             </div>
             <div class="logo-text">
-              <h1>Muraripukur Govt. Higher Secondary School</h1>
+              <h1>Muraripukur Govt. Spond. Higher Secondary School</h1>
               <p class="logo-tagline">Excellence in Education</p>
             </div>
           </a>
@@ -37,7 +37,14 @@
             <a href="about.html" class="nav-link">About</a>
             <a href="#academics" class="nav-link">Academics</a>
             <a href="#admissions" class="nav-link">Admissions</a>
-            <a href="#faculty" class="nav-link">Faculty</a>
+            <div class="nav-dropdown">
+              <a href="#faculty" class="nav-link dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
+              <div class="dropdown-menu">
+                <a href="{% url 'morning' %}" class="dropdown-item">Morning Department</a>
+                <a href="{% url 'day' %}" class="dropdown-item">Day Department</a>
+                <a href="{% url 'non_teaching' %}" class="dropdown-item">Other Non-Teaching Staff</a>
+              </div>
+            </div>
             <a href="#gallery" class="nav-link">Gallery</a>
             <a href="#contact" class="nav-link">Contact</a>
           </nav>
@@ -63,10 +70,17 @@
           <a href="about.html" class="mobile-nav-link">About</a>
           <a href="#academics" class="mobile-nav-link">Academics</a>
           <a href="#admissions" class="mobile-nav-link">Admissions</a>
-          <a href="#faculty" class="mobile-nav-link">Faculty</a>
+          <div class="mobile-nav-dropdown">
+            <a href="#faculty" class="mobile-nav-link mobile-dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
+            <div class="mobile-dropdown-menu">
+              <a href="{% url 'morning' %}" class="mobile-dropdown-item">Morning Department</a>
+              <a href="{% url 'day' %}" class="mobile-dropdown-item">Day Department</a>
+              <a href="{% url 'non_teaching' %}" class="mobile-dropdown-item">Other Non-Teaching Staff</a>
+            </div>
+          </div>
           <a href="#gallery" class="mobile-nav-link">Gallery</a>
           <a href="#contact" class="mobile-nav-link">Contact</a>
-          <a href="#marks_portal" class="marks-portal-btn mobile-cta">
+          <a href="login/" class="marks-portal-btn mobile-cta">
              Marks Portal
           </a>
         </div>
@@ -384,7 +398,7 @@
                 <i class="fas fa-graduation-cap"></i>
               </div>
               <div class="logo-text">
-                <h3>Muraripukur Govt. Higher Secondary School</h3>
+                <h3>Muraripukur Govt. Spond. Higher Secondary School</h3>
                 <p>Excellence in Education</p>
               </div>
             </div>
@@ -402,6 +416,9 @@
               <li><a href="#academics">Academics</a></li>
               <li><a href="#admissions">Admissions</a></li>
               <li><a href="#faculty">Faculty</a></li>
+              <li><a href="{% url 'morning' %}">Morning Department</a></li>
+              <li><a href="{% url 'day' %}">Day Department</a></li>
+              <li><a href="{% url 'non_teaching' %}">Non-Teaching Staff</a></li>
             </ul>
           </div>
 

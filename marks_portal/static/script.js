@@ -5,6 +5,8 @@ class MobileMenu {
     this.mobileNav = document.getElementById("mobileNav");
     this.menuIcon = document.getElementById("menuIcon");
     this.mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+    this.mobileDropdownToggle = document.querySelector(".mobile-dropdown-toggle");
+    this.mobileDropdown = document.querySelector(".mobile-nav-dropdown");
 
     this.init();
   }
@@ -18,9 +20,20 @@ class MobileMenu {
     // Close mobile menu when a link is clicked
     this.mobileNavLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        this.closeMenu();
+        // Don't close menu if it's the dropdown toggle
+        if (!link.classList.contains("mobile-dropdown-toggle")) {
+          this.closeMenu();
+        }
       });
     });
+
+    // Handle mobile dropdown toggle
+    if (this.mobileDropdownToggle) {
+      this.mobileDropdownToggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.toggleMobileDropdown();
+      });
+    }
 
     // Close mobile menu when clicking outside
     document.addEventListener("click", (e) => {
@@ -69,6 +82,17 @@ class MobileMenu {
     this.menuIcon.classList.remove("fa-times");
     this.menuIcon.classList.add("fa-bars");
     document.body.style.overflow = ""; // Restore body scroll
+    
+    // Close mobile dropdown when closing menu
+    if (this.mobileDropdown) {
+      this.mobileDropdown.classList.remove("active");
+    }
+  }
+
+  toggleMobileDropdown() {
+    if (this.mobileDropdown) {
+      this.mobileDropdown.classList.toggle("active");
+    }
   }
 }
 
@@ -412,6 +436,44 @@ class AccessibilityEnhancements {
   }
 }
 
+// Desktop Dropdown Functionality
+class DesktopDropdown {
+  constructor() {
+    this.dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    this.init();
+  }
+
+  init() {
+    this.dropdownToggles.forEach(toggle => {
+      const dropdown = toggle.closest('.nav-dropdown');
+      
+      // Add click functionality as backup
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Close other dropdowns
+        document.querySelectorAll('.nav-dropdown').forEach(otherDropdown => {
+          if (otherDropdown !== dropdown) {
+            otherDropdown.classList.remove('active');
+          }
+        });
+        
+        // Toggle current dropdown
+        dropdown.classList.toggle('active');
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-dropdown')) {
+        document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+          dropdown.classList.remove('active');
+        });
+      }
+    });
+  }
+}
+
 // Initialize all components when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
   try {
@@ -422,6 +484,7 @@ document.addEventListener("DOMContentLoaded", () => {
     new ScrollAnimations();
     new LoadingIndicator();
     new AccessibilityEnhancements();
+    new DesktopDropdown();
 
     // Performance monitoring (optional)
     if (window.location.hostname !== "localhost") {

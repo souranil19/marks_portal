@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.db import models
 from .models import Teacher, ClassAccess
 from student_front_login.models import Student, StudentTermSummary
 
@@ -243,4 +244,57 @@ def marks_entry_view(request, class_number):
         'subjects': subjects,
         'terms': terms,
         'mark_types': mark_types
+    })
+
+
+
+# ----------------------------
+# MORNING SECTION PAGE
+# ----------------------------
+
+def morning_section(request):
+    # Fetch teachers from MORNING section
+    morning_teachers = Teacher.objects.filter(department='MORNING')
+    
+    return render(request, 'morning.html', {
+        'teachers': morning_teachers,
+        'section': 'Morning Section'
+    })
+
+
+
+
+
+
+
+
+# ----------------------------
+# DAY SECTION PAGE
+# ----------------------------
+
+def day_section(request):
+    # Fetch teachers from DAY section
+    day_teachers = Teacher.objects.filter(department='DAY')
+    
+    return render(request, 'day.html', {
+        'teachers': day_teachers,
+        'section': 'Day Section'
+    })
+
+
+
+
+# ----------------------------
+# NON-TEACHING STAFF PAGE
+# ----------------------------
+
+def non_teaching(request):
+    # Fetch non-teaching staff (where department is not MORNING/DAY or is empty)
+    non_teaching_staff = Teacher.objects.exclude(
+        department__in=['MORNING', 'DAY']
+    )
+    
+    return render(request, 'non_teaching.html', {
+        'staff': non_teaching_staff,
+        'section': 'Non-Teaching Staff'
     })
