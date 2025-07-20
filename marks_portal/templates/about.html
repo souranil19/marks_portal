@@ -21,12 +21,12 @@
       <div class="container">
         <div class="header-content">
           <!-- Logo and School Name -->
-          <a href="index.html" class="logo">
+          <a href="{% url 'landing_page' %}" class="logo">
             <div class="logo-icon">
               <i class="fas fa-graduation-cap"></i>
             </div>
             <div class="logo-text">
-              <h1>Muraripukur Govt. Higher Secondary School</h1>
+              <h1>Muraripukur Govt. Spond. Higher Secondary School</h1>
               <p class="logo-tagline">Excellence in Education</p>
             </div>
           </a>
@@ -34,17 +34,31 @@
           <!-- Desktop Navigation -->
           <nav class="nav-desktop">
             <a href="{% url 'landing_page' %}" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link active">About</a>
-            <a href="#academics" class="nav-link">Academics</a>
-            <a href="#admissions" class="nav-link">Admissions</a>
-            <a href="#faculty" class="nav-link">Faculty</a>
+            <a href="{% url 'about' %}" class="nav-link active">About</a>
+            <div class="nav-dropdown">
+              <a  class="nav-link dropdown-toggle">Programs<i class="fas fa-chevron-down"></i></a>
+              <div class="dropdown-menu">
+                <a href="{% url 'morning_school_landing' %}" class="dropdown-item">Morning School</a>
+                <a href="{% url 'day_school_landing' %}" class="dropdown-item">Day School</a>
+                <a href="{% url 'vocational_landing' %}" class="dropdown-item">Vocational Cources</a>
+              </div>
+            </div>
+            <div class="nav-dropdown">
+              <a  class="nav-link dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
+              <div class="dropdown-menu">
+                <a href="{% url 'morning' %}" class="dropdown-item">Morning Department</a>
+                <a href="{% url 'day' %}" class="dropdown-item">Day Department</a>
+                <a href="{% url 'non_teaching' %}" class="dropdown-item">Other Non-Teaching Staff</a>
+              </div>
+            </div>
+            <a href="#academics" class="nav-link">Notice</a>
             <a href="#gallery" class="nav-link">Gallery</a>
             <a href="#contact" class="nav-link">Contact</a>
           </nav>
 
           <!-- CTA Button -->
           <div class="header-cta">
-            <a href="#marks-portal" class="marks-portal-btn">
+            <a href="{% url 'login_page' %}" class="marks-portal-btn">
               <i class="fas fa-chart-line"></i> Marks Portal
             </a>
           </div>
@@ -59,15 +73,29 @@
       <!-- Mobile Navigation -->
       <div class="mobile-nav" id="mobileNav">
         <div class="mobile-nav-content">
-          <a href="index.html" class="mobile-nav-link">Home</a>
-          <a href="about.html" class="mobile-nav-link">About</a>
-          <a href="#academics" class="mobile-nav-link">Academics</a>
-          <a href="#admissions" class="mobile-nav-link">Admissions</a>
-          <a href="#faculty" class="mobile-nav-link">Faculty</a>
+          <a href="{% url 'landing_page' %}" class="mobile-nav-link">Home</a>
+          <a href="{% url 'about' %}" class="mobile-nav-link">About</a>
+          <div class="mobile-nav-dropdown">
+            <a class="mobile-nav-link mobile-dropdown-toggle">Programs <i class="fas fa-chevron-down"></i></a>
+            <div class="mobile-dropdown-menu">
+              <a href="{% url 'morning_school_landing' %}" class="mobile-dropdown-item">Morning School</a>
+              <a href="{% url 'day_school_landing' %}" class="mobile-dropdown-item">Day School</a>
+              <a href="{% url 'vocational_landing' %}" class="mobile-dropdown-item">Vocational Cources</a>
+            </div>
+          </div>
+          <div class="mobile-nav-dropdown">
+            <a class="mobile-nav-link mobile-dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
+            <div class="mobile-dropdown-menu">
+              <a href="{% url 'morning' %}" class="mobile-dropdown-item">Morning Department</a>
+              <a href="{% url 'day' %}" class="mobile-dropdown-item">Day Department</a>
+              <a href="{% url 'non_teaching' %}" class="mobile-dropdown-item">Other Non-Teaching Staff</a>
+            </div>
+          </div>
+          <a href="#academics" class="mobile-nav-link">Notice</a>
           <a href="#gallery" class="mobile-nav-link">Gallery</a>
           <a href="#contact" class="mobile-nav-link">Contact</a>
-          <a href="#marks-portal" class="marks-portal-btn mobile-cta">
-            <i class="fas fa-chart-line"></i> Marks Portal
+          <a href="{% url 'login_page' %}" class="marks-portal-btn mobile-cta">
+             Marks Portal
           </a>
         </div>
       </div>
@@ -416,7 +444,7 @@
                 <i class="fas fa-graduation-cap"></i>
               </div>
               <div class="logo-text">
-                <h3>Muraripukur Govt. Higher Secondary School</h3>
+                <h3>Muraripukur Govt. Spond. Higher Secondary School</h3>
                 <p>Excellence in Education</p>
               </div>
             </div>
@@ -430,10 +458,12 @@
           <div class="footer-section">
             <h4>Quick Links</h4>
             <ul class="footer-links">
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="#academics">Academics</a></li>
-              <li><a href="#admissions">Admissions</a></li>
+              <li><a href="{% url 'about' %}">About Us</a></li>
+              <li><a href="#academics">Notice</a></li>
               <li><a href="#faculty">Faculty</a></li>
+              <li><a href="{% url 'morning' %}">Morning Department</a></li>
+              <li><a href="{% url 'day' %}">Day Department</a></li>
+              <li><a href="{% url 'non_teaching' %}">Non-Teaching Staff</a></li>
             </ul>
           </div>
 
@@ -441,10 +471,9 @@
           <div class="footer-section">
             <h4>Programs</h4>
             <ul class="footer-links">
-              <li><a href="#academics">Primary School</a></li>
-              <li><a href="#academics">Middle School</a></li>
-              <li><a href="#academics">High School</a></li>
-              <li><a href="#academics">Senior Secondary</a></li>
+              <li><a href="{% url 'morning_school_landing' %}">Morning School</a></li>
+              <li><a href="{% url 'day_school_landing' %}">Day School</a></li>
+              <li><a href="{% url 'vocational_landing' %}">Vocational Cources</a></li>
             </ul>
           </div>
 

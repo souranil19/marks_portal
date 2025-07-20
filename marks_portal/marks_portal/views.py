@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 def school_landing(request):
@@ -16,3 +16,11 @@ def day_school_landing(request):
 
 def vocational_landing(request):
     return render(request,'vocational_landing1.html')
+
+
+def notice(request):
+    return render(request,'notice.html')
+
+
+def contact(request):
+    return render(request,'contact.html')
