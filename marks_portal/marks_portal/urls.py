@@ -23,6 +23,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.school_landing, name='landing_page'),
+    path('morning_school/', views.morning_school_landing, name='morning_school_landing'),
+    path('day_school/', views.day_school_landing, name='day_school_landing'),
+    path('vocational/', views.vocational_landing, name='vocational_landing'),
     path('login/', include('student_front_login.urls')),
     path('teacher/', include('teacher.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

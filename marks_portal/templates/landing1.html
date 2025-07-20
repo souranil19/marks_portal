@@ -21,7 +21,7 @@
       <div class="container">
         <div class="header-content">
           <!-- Logo and School Name -->
-          <a href="index.html" class="logo">
+          <a href="#" class="logo">
             <div class="logo-icon">
               <i class="fas fa-graduation-cap"></i>
             </div>
@@ -36,9 +36,16 @@
             <a href="index.html" class="nav-link active">Home</a>
             <a href="about.html" class="nav-link">About</a>
             <a href="#academics" class="nav-link">Academics</a>
-            <a href="#admissions" class="nav-link">Admissions</a>
             <div class="nav-dropdown">
-              <a href="#faculty" class="nav-link dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
+              <a  class="nav-link dropdown-toggle">Programs<i class="fas fa-chevron-down"></i></a>
+              <div class="dropdown-menu">
+                <a href="{% url 'morning_school_landing' %}" class="dropdown-item">Morning School</a>
+                <a href="{% url 'day_school_landing' %}" class="dropdown-item">Day School</a>
+                <a href="{% url 'vocational_landing' %}" class="dropdown-item">Vocational Cources</a>
+              </div>
+            </div>
+            <div class="nav-dropdown">
+              <a  class="nav-link dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
               <div class="dropdown-menu">
                 <a href="{% url 'morning' %}" class="dropdown-item">Morning Department</a>
                 <a href="{% url 'day' %}" class="dropdown-item">Day Department</a>
