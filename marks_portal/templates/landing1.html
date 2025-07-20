@@ -34,8 +34,7 @@
           <!-- Desktop Navigation -->
           <nav class="nav-desktop">
             <a href="index.html" class="nav-link active">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="#academics" class="nav-link">Academics</a>
+            <a href="{% url 'about' %}" class="nav-link">About</a>
             <div class="nav-dropdown">
               <a  class="nav-link dropdown-toggle">Programs<i class="fas fa-chevron-down"></i></a>
               <div class="dropdown-menu">
@@ -52,6 +51,7 @@
                 <a href="{% url 'non_teaching' %}" class="dropdown-item">Other Non-Teaching Staff</a>
               </div>
             </div>
+            <a href="#academics" class="nav-link">Notice</a>
             <a href="#gallery" class="nav-link">Gallery</a>
             <a href="#contact" class="nav-link">Contact</a>
           </nav>
@@ -78,7 +78,7 @@
           <a href="#academics" class="mobile-nav-link">Academics</a>
           <a href="#admissions" class="mobile-nav-link">Admissions</a>
           <div class="mobile-nav-dropdown">
-            <a href="#faculty" class="mobile-nav-link mobile-dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
+            <a class="mobile-nav-link mobile-dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
             <div class="mobile-dropdown-menu">
               <a href="{% url 'morning' %}" class="mobile-dropdown-item">Morning Department</a>
               <a href="{% url 'day' %}" class="mobile-dropdown-item">Day Department</a>
@@ -419,9 +419,8 @@
           <div class="footer-section">
             <h4>Quick Links</h4>
             <ul class="footer-links">
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="#academics">Academics</a></li>
-              <li><a href="#admissions">Admissions</a></li>
+              <li><a href="{% url 'about' %}">About Us</a></li>
+              <li><a href="#academics">Notice</a></li>
               <li><a href="#faculty">Faculty</a></li>
               <li><a href="{% url 'morning' %}">Morning Department</a></li>
               <li><a href="{% url 'day' %}">Day Department</a></li>
@@ -433,10 +432,9 @@
           <div class="footer-section">
             <h4>Programs</h4>
             <ul class="footer-links">
-              <li><a href="#academics">Primary School</a></li>
-              <li><a href="#academics">Middle School</a></li>
-              <li><a href="#academics">High School</a></li>
-              <li><a href="#academics">Senior Secondary</a></li>
+              <li><a href="{% url 'morning_school_landing' %}">Morning School</a></li>
+              <li><a href="{% url 'day_school_landing' %}">Day School</a></li>
+              <li><a href="{% url 'vocational_landing' %}">Vocational Cources</a></li>
             </ul>
           </div>
 
