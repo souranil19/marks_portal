@@ -250,7 +250,16 @@
                     <h2 class="section-title mb-4">Send us a Message</h2>
                     <p class="text-muted mb-4">Fill out the form below and we'll get back to you as soon as possible.</p>
                     
-                    <form method="post" id="contactForm">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                <strong>Success!</strong> {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <form method="POST" id="contactForm">
                         {% csrf_token %}
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -405,38 +414,28 @@
 // Contact form handling
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    
+    // Reset button state if page reloaded after form submission
+    if (submitBtn) {
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
+        submitBtn.disabled = false;
+    }
+    
+    // Clear form and scroll to success message if it exists
+    const successAlert = document.querySelector('.alert-success');
+    if (successAlert) {
+        contactForm.reset();
+        successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
     
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
         // Show loading state
-        const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
         submitBtn.disabled = true;
         
-        // Simulate form submission (replace with actual form handling)
-        setTimeout(() => {
-            // Show success message
-            const alertDiv = document.createElement('div');
-            alertDiv.className = 'alert alert-success alert-dismissible fade show mt-3';
-            alertDiv.innerHTML = `
-                <strong>Success!</strong> Your message has been sent successfully. We'll get back to you soon.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            `;
-            
-            contactForm.insertBefore(alertDiv, contactForm.firstChild);
-            
-            // Reset form
-            contactForm.reset();
-            
-            // Reset button
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            
-            // Scroll to success message
-            alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 2000);
+        // Form will submit normally to Django view
     });
     
     // Form validation enhancement

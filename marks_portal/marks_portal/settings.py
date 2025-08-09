@@ -145,3 +145,12 @@ X_FRAME_OPTIONS = 'DENY'
 # CSRF Protection
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = False  # Set to True in production with HTTPS
+
+
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_USE_TLS=True
+EMAIL_PORT=587
+EMAIL_HOST_USER="from----email.com"  
+EMAIL_HOST_PASSWORD="***********"  # Replace with your Gmail App Password
