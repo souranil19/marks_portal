@@ -5,17 +5,19 @@ class MobileMenu {
     this.mobileNav = document.getElementById("mobileNav");
     this.menuIcon = document.getElementById("menuIcon");
     this.mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
-    this.mobileDropdownToggle = document.querySelector(".mobile-dropdown-toggle");
-    this.mobileDropdown = document.querySelector(".mobile-nav-dropdown");
+    this.mobileDropdownToggles = document.querySelectorAll(".mobile-dropdown-toggle");
+    this.mobileDropdowns = document.querySelectorAll(".mobile-nav-dropdown");
 
     this.init();
   }
 
   init() {
     // Toggle mobile menu when button is clicked
-    this.menuBtn.addEventListener("click", () => {
-      this.toggleMenu();
-    });
+    if (this.menuBtn) {
+      this.menuBtn.addEventListener("click", () => {
+        this.toggleMenu();
+      });
+    }
 
     // Close mobile menu when a link is clicked
     this.mobileNavLinks.forEach((link) => {
@@ -27,20 +29,19 @@ class MobileMenu {
       });
     });
 
-    // Handle mobile dropdown toggle
-    if (this.mobileDropdownToggle) {
-      this.mobileDropdownToggle.addEventListener("click", (e) => {
+    // Handle mobile dropdown toggles
+    this.mobileDropdownToggles.forEach((toggle, index) => {
+      toggle.addEventListener("click", (e) => {
         e.preventDefault();
-        this.toggleMobileDropdown();
+        this.toggleMobileDropdown(index);
       });
-    }
+    });
 
     // Close mobile menu when clicking outside
     document.addEventListener("click", (e) => {
-      if (
-        !this.menuBtn.contains(e.target) &&
-        !this.mobileNav.contains(e.target)
-      ) {
+      if (this.menuBtn && this.mobileNav && 
+          !this.menuBtn.contains(e.target) &&
+          !this.mobileNav.contains(e.target)) {
         this.closeMenu();
       }
     });
@@ -72,26 +73,39 @@ class MobileMenu {
 
   openMenu() {
     this.mobileNav.classList.add("active");
-    this.menuIcon.classList.remove("fa-bars");
-    this.menuIcon.classList.add("fa-times");
+    if (this.menuIcon) {
+      this.menuIcon.classList.remove("fa-bars");
+      this.menuIcon.classList.add("fa-times");
+    }
     document.body.style.overflow = "hidden"; // Prevent body scroll
   }
 
   closeMenu() {
     this.mobileNav.classList.remove("active");
-    this.menuIcon.classList.remove("fa-times");
-    this.menuIcon.classList.add("fa-bars");
+    if (this.menuIcon) {
+      this.menuIcon.classList.remove("fa-times");
+      this.menuIcon.classList.add("fa-bars");
+    }
     document.body.style.overflow = ""; // Restore body scroll
     
-    // Close mobile dropdown when closing menu
-    if (this.mobileDropdown) {
-      this.mobileDropdown.classList.remove("active");
-    }
+    // Close all mobile dropdowns when closing menu
+    this.mobileDropdowns.forEach(dropdown => {
+      dropdown.classList.remove("active");
+    });
   }
 
-  toggleMobileDropdown() {
-    if (this.mobileDropdown) {
-      this.mobileDropdown.classList.toggle("active");
+  toggleMobileDropdown(index) {
+    const dropdown = this.mobileDropdowns[index];
+    if (dropdown) {
+      // Close other dropdowns
+      this.mobileDropdowns.forEach((otherDropdown, otherIndex) => {
+        if (otherIndex !== index) {
+          otherDropdown.classList.remove("active");
+        }
+      });
+      
+      // Toggle current dropdown
+      dropdown.classList.toggle("active");
     }
   }
 }
@@ -440,16 +454,19 @@ class AccessibilityEnhancements {
 class DesktopDropdown {
   constructor() {
     this.dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    console.log('DesktopDropdown: Found', this.dropdownToggles.length, 'dropdown toggles');
     this.init();
   }
 
   init() {
-    this.dropdownToggles.forEach(toggle => {
+    this.dropdownToggles.forEach((toggle, index) => {
       const dropdown = toggle.closest('.nav-dropdown');
+      console.log(`DesktopDropdown: Setting up dropdown ${index}:`, dropdown);
       
       // Add click functionality as backup
       toggle.addEventListener('click', (e) => {
         e.preventDefault();
+        console.log('DesktopDropdown: Dropdown clicked!', dropdown);
         
         // Close other dropdowns
         document.querySelectorAll('.nav-dropdown').forEach(otherDropdown => {
@@ -460,6 +477,7 @@ class DesktopDropdown {
         
         // Toggle current dropdown
         dropdown.classList.toggle('active');
+        console.log('DesktopDropdown: Dropdown active state:', dropdown.classList.contains('active'));
       });
     });
 
@@ -476,6 +494,7 @@ class DesktopDropdown {
 
 // Initialize all components when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM Content Loaded - Initializing components...");
   try {
     // Core functionality
     new MobileMenu();
@@ -484,7 +503,9 @@ document.addEventListener("DOMContentLoaded", () => {
     new ScrollAnimations();
     new LoadingIndicator();
     new AccessibilityEnhancements();
+    console.log("About to initialize DesktopDropdown...");
     new DesktopDropdown();
+    console.log("DesktopDropdown initialized!");
 
     // Performance monitoring (optional)
     if (window.location.hostname !== "localhost") {
@@ -493,6 +514,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Vidyavihar School website initialized successfully");
   } catch (error) {
+    console.error("Initialization error:", error);
     ErrorHandler.logError(error, "Initialization");
   }
 });

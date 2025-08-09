@@ -1,0 +1,456 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - {{ block.super }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'test.css' %}">
+<style>
+    /* Custom styles to match the home page theme */
+    .hero-contact {
+        background: linear-gradient(135deg, var(--navy) 0%, var(--primary-blue-dark) 100%);
+        color: white;
+        padding: 100px 0 80px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-contact::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('{% static "murari-pukur-government-sponsored-higher-secondary-school-ultadanga-main-road-kolkata-senior-secondary-schools-i6hmani5tn.jpg" %}') center/cover;
+        opacity: 0.1;
+        z-index: 1;
+    }
+    
+    .hero-contact .container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .contact-card {
+        background: white;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-lg);
+        transition: var(--transition-all);
+        border-top: 4px solid var(--primary-blue);
+        padding: 2rem;
+        height: 100%;
+    }
+    
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-section {
+        background: var(--gray-50);
+        padding: 80px 0;
+    }
+    
+    .contact-form {
+        background: white;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-lg);
+        padding: 3rem;
+    }
+    
+    .form-control:focus {
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 0.2rem rgba(0, 102, 255, 0.25);
+    }
+    
+    .btn-primary {
+        background: var(--primary-blue);
+        border-color: var(--primary-blue);
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+    }
+    
+    .btn-primary:hover {
+        background: var(--primary-blue-dark);
+        border-color: var(--primary-blue-dark);
+    }
+    
+    .map-container {
+        background: white;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        height: 400px;
+    }
+    
+    .stats-section {
+        background: white;
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        color: var(--gray-900);
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+    
+    .office-hours {
+        background: var(--primary-blue);
+        color: white;
+        border-radius: var(--border-radius-lg);
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    .department-card {
+        background: white;
+        border: 1px solid var(--gray-200);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: var(--transition-all);
+    }
+    
+    .department-card:hover {
+        border-color: var(--primary-blue);
+        box-shadow: var(--shadow-md);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-contact">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-4">
+                    <i class="fas fa-phone me-3"></i>Contact Us
+                </h1>
+                <p class="lead mb-4">
+                    Get in touch with us for admissions, inquiries, or any assistance. We're here to help you on your educational journey.
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <span class="badge bg-light text-dark fs-6 px-3 py-2">
+                        <i class="fas fa-clock me-2"></i>Mon-Fri: 8AM-4PM
+                    </span>
+                    <span class="badge bg-light text-dark fs-6 px-3 py-2">
+                        <i class="fas fa-map-marker-alt me-2"></i>Kolkata, West Bengal
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information Cards -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Phone Contact -->
+            <div class="col-lg-4 col-md-6">
+                <div class="contact-card text-center">
+                    <div class="contact-icon mx-auto">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">Phone</h4>
+                    <p class="text-muted mb-3">Call us during office hours</p>
+                    <div class="contact-details">
+                        <p class="fw-semibold mb-2">Main Office:</p>
+                        <p class="mb-2">+91 (033) 2567-8901</p>
+                        <p class="fw-semibold mb-2">Admissions:</p>
+                        <p class="mb-0">+91 (033) 2567-8902</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Contact -->
+            <div class="col-lg-4 col-md-6">
+                <div class="contact-card text-center">
+                    <div class="contact-icon mx-auto">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">Email</h4>
+                    <p class="text-muted mb-3">Send us an email anytime</p>
+                    <div class="contact-details">
+                        <p class="fw-semibold mb-2">General Inquiries:</p>
+                        <p class="mb-2">info@muraripukurschool.edu.in</p>
+                        <p class="fw-semibold mb-2">Admissions:</p>
+                        <p class="mb-0">admissions@muraripukurschool.edu.in</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="col-lg-4 col-md-6">
+                <div class="contact-card text-center">
+                    <div class="contact-icon mx-auto">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">Address</h4>
+                    <p class="text-muted mb-3">Visit our campus</p>
+                    <div class="contact-details">
+                        <p class="fw-semibold mb-2">Muraripukur Government Sponsored Higher Secondary School</p>
+                        <p class="mb-2">Ultadanga Main Road</p>
+                        <p class="mb-2">Kolkata - 700067</p>
+                        <p class="mb-0">West Bengal, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="h2 fw-bold" style="color: var(--primary-blue);">5000+</div>
+                <p class="mb-0 text-muted">Inquiries Handled</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="h2 fw-bold" style="color: var(--primary-blue);">24hrs</div>
+                <p class="mb-0 text-muted">Email Response</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="h2 fw-bold" style="color: var(--primary-blue);">95%</div>
+                <p class="mb-0 text-muted">Satisfaction Rate</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="h2 fw-bold" style="color: var(--primary-blue);">6</div>
+                <p class="mb-0 text-muted">Days a Week</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form and Map Section -->
+<section class="form-section">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <div class="contact-form">
+                    <h2 class="section-title mb-4">Send us a Message</h2>
+                    <p class="text-muted mb-4">Fill out the form below and we'll get back to you as soon as possible.</p>
+                    
+                    <form method="post" id="contactForm">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" class="form-control" id="firstName" name="first_name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" class="form-control" id="lastName" name="last_name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="col-12">
+                                <label for="subject" class="form-label">Subject *</label>
+                                <select class="form-select" id="subject" name="subject" required>
+                                    <option value="">Choose a subject...</option>
+                                    <option value="admission">Admission Inquiry</option>
+                                    <option value="academic">Academic Information</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="complaint">Complaint/Feedback</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Please provide details about your inquiry..."></textarea>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="consent" name="consent" required>
+                                    <label class="form-check-label" for="consent">
+                                        I agree to the processing of my personal data for the purpose of responding to my inquiry. *
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar Information -->
+            <div class="col-lg-4">
+                <!-- Office Hours -->
+                <div class="office-hours mb-4">
+                    <h4 class="fw-bold mb-3">
+                        <i class="fas fa-clock me-2"></i>Office Hours
+                    </h4>
+                    <div class="office-time">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Monday - Friday:</span>
+                            <span>8:00 AM - 4:00 PM</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Saturday:</span>
+                            <span>8:00 AM - 1:00 PM</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Sunday:</span>
+                            <span>Closed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Departments -->
+                <div class="departments">
+                    <h4 class="section-title mb-3">Contact Departments</h4>
+                    
+                    <div class="department-card">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-user-graduate me-2" style="color: var(--primary-blue);"></i>
+                            Admissions Office
+                        </h6>
+                        <p class="text-muted small mb-2">For new admissions and enrollment</p>
+                        <p class="small mb-0">Ext: 101 | admissions@school.edu.in</p>
+                    </div>
+
+                    <div class="department-card">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-book me-2" style="color: var(--primary-blue);"></i>
+                            Academic Office
+                        </h6>
+                        <p class="text-muted small mb-2">Academic queries and curriculum</p>
+                        <p class="small mb-0">Ext: 102 | academic@school.edu.in</p>
+                    </div>
+
+                    <div class="department-card">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-calculator me-2" style="color: var(--primary-blue);"></i>
+                            Accounts Department
+                        </h6>
+                        <p class="text-muted small mb-2">Fee payment and financial matters</p>
+                        <p class="small mb-0">Ext: 103 | accounts@school.edu.in</p>
+                    </div>
+
+                    <div class="department-card">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-user-shield me-2" style="color: var(--primary-blue);"></i>
+                            Principal's Office
+                        </h6>
+                        <p class="text-muted small mb-2">Official matters and grievances</p>
+                        <p class="small mb-0">Ext: 100 | principal@school.edu.in</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h2 class="section-title text-center mb-4">Find Us on Map</h2>
+                <div class="map-container">
+                    <!-- Google Maps Embed -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.6457528270053!2d88.3879225!3d22.592348899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027613949c3a45%3A0xa5633c158a9e52bc!2sMuraripukur%20Govt.%20Sponsored%20Higher%20Secondary%20School!5e0!3m2!1sen!2sin!4v1754745613764!5m2!1sen!2sin"
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="https://maps.app.goo.gl/1ubavsM79dDmr6t98" target="_blank" class="btn btn-outline-primary">
+                        <i class="fas fa-map-marker-alt me-2"></i>Open in Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Contact form handling
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission (replace with actual form handling)
+        setTimeout(() => {
+            // Show success message
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-success alert-dismissible fade show mt-3';
+            alertDiv.innerHTML = `
+                <strong>Success!</strong> Your message has been sent successfully. We'll get back to you soon.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            contactForm.insertBefore(alertDiv, contactForm.firstChild);
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            // Scroll to success message
+            alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 2000);
+    });
+    
+    // Form validation enhancement
+    const requiredFields = contactForm.querySelectorAll('[required]');
+    requiredFields.forEach(field => {
+        field.addEventListener('blur', function() {
+            if (!this.value.trim()) {
+                this.classList.add('is-invalid');
+            } else {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

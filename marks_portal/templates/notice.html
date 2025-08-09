@@ -1,1 +1,349 @@
-notice page
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Notice Board - {{ block.super }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Custom styles to match the home page theme */
+    .hero-notice {
+        background: linear-gradient(135deg, var(--primary-blue) 0%, var(--navy) 100%);
+        color: white;
+        padding: 100px 0 80px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-notice::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('{% static "1.jpg" %}') center/cover;
+        opacity: 0.1;
+        z-index: 1;
+    }
+    
+    .hero-notice .container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .notice-card {
+        background: white;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-lg);
+        transition: var(--transition-all);
+        border-left: 4px solid var(--primary-blue);
+        margin-bottom: 2rem;
+    }
+    
+    .notice-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .notice-badge {
+        background: var(--primary-blue);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+    
+    .notice-date {
+        background: var(--gray-100);
+        color: var(--gray-700);
+        padding: 0.25rem 0.75rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+    
+    .notice-urgent {
+        border-left-color: #dc3545;
+    }
+    
+    .notice-urgent .notice-badge {
+        background: #dc3545;
+    }
+    
+    .stats-section {
+        background: var(--gray-50);
+        padding: 60px 0;
+    }
+    
+    .filter-pills .btn {
+        border-radius: 50px;
+        margin: 0.25rem;
+        font-weight: 500;
+    }
+    
+    .section-title {
+        color: var(--gray-900);
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-notice">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-4">
+                    <i class="fas fa-bullhorn me-3"></i>Notice Board
+                </h1>
+                <p class="lead mb-4">
+                    Stay updated with the latest announcements, events, and important information from our school
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <span class="badge bg-light text-dark fs-6 px-3 py-2">
+                        <i class="fas fa-calendar me-2"></i>Latest Updates
+                    </span>
+                    <span class="badge bg-light text-dark fs-6 px-3 py-2">
+                        <i class="fas fa-clock me-2"></i>Real-time Notifications
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="h2 fw-bold" style="color: var(--primary-blue);">25+</div>
+                <p class="mb-0 text-muted">Active Notices</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="h2 fw-bold" style="color: var(--primary-blue);">15</div>
+                <p class="mb-0 text-muted">This Month</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="h2 fw-bold" style="color: var(--primary-blue);">5</div>
+                <p class="mb-0 text-muted">Urgent</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="h2 fw-bold" style="color: var(--primary-blue);">100%</div>
+                <p class="mb-0 text-muted">Updated</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Notice Content -->
+<section class="py-5">
+    <div class="container">
+        <!-- Filter Pills -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="section-title mb-4">Filter Notices</h2>
+                <div class="filter-pills">
+                    <button class="btn btn-primary active">All Notices</button>
+                    <button class="btn btn-outline-primary">Academic</button>
+                    <button class="btn btn-outline-primary">Events</button>
+                    <button class="btn btn-outline-primary">Admissions</button>
+                    <button class="btn btn-outline-primary">Urgent</button>
+                    <button class="btn btn-outline-primary">Results</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notice Cards -->
+        <div class="row">
+            <!-- Urgent Notice -->
+            <div class="col-lg-6 mb-4">
+                <div class="notice-card notice-urgent p-4 h-100">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="notice-badge">URGENT</span>
+                        <span class="notice-date">
+                            <i class="fas fa-calendar-alt me-1"></i>Aug 04, 2025
+                        </span>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
+                        Admission Forms for Class XI - Last Date Extended
+                    </h4>
+                    <p class="text-muted mb-3">
+                        The last date for submission of admission forms for Class XI has been extended to August 15, 2025. 
+                        Students who haven't submitted their forms yet can visit the school office between 10 AM to 4 PM.
+                    </p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="text-muted small">
+                            <i class="fas fa-user me-1"></i>Principal's Office
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary">Read More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regular Notice -->
+            <div class="col-lg-6 mb-4">
+                <div class="notice-card p-4 h-100">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="notice-badge">ACADEMIC</span>
+                        <span class="notice-date">
+                            <i class="fas fa-calendar-alt me-1"></i>Aug 02, 2025
+                        </span>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
+                        Class XII Final Examination Schedule Released
+                    </h4>
+                    <p class="text-muted mb-3">
+                        The examination schedule for Class XII final examinations has been published. 
+                        Students can download the schedule from the student portal or collect hard copies from the office.
+                    </p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="text-muted small">
+                            <i class="fas fa-user me-1"></i>Examination Cell
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary">Download</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Notice -->
+            <div class="col-lg-6 mb-4">
+                <div class="notice-card p-4 h-100">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="notice-badge" style="background: var(--secondary-blue);">EVENT</span>
+                        <span class="notice-date">
+                            <i class="fas fa-calendar-alt me-1"></i>Jul 30, 2025
+                        </span>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
+                        Annual Cultural Program - Auditions Open
+                    </h4>
+                    <p class="text-muted mb-3">
+                        Auditions for the annual cultural program will be held on August 10, 2025. 
+                        Students interested in participating can register with their respective class teachers.
+                    </p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="text-muted small">
+                            <i class="fas fa-user me-1"></i>Cultural Committee
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary">Register</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Another Notice -->
+            <div class="col-lg-6 mb-4">
+                <div class="notice-card p-4 h-100">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="notice-badge" style="background: var(--light-blue);">RESULTS</span>
+                        <span class="notice-date">
+                            <i class="fas fa-calendar-alt me-1"></i>Jul 28, 2025
+                        </span>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
+                        Class XI First Terminal Results Published
+                    </h4>
+                    <p class="text-muted mb-3">
+                        First terminal examination results for Class XI are now available. 
+                        Students can check their results through the marks portal using their roll numbers.
+                    </p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="text-muted small">
+                            <i class="fas fa-user me-1"></i>Result Section
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary">Check Results</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Holiday Notice -->
+            <div class="col-lg-6 mb-4">
+                <div class="notice-card p-4 h-100">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="notice-badge" style="background: var(--royal-blue);">HOLIDAY</span>
+                        <span class="notice-date">
+                            <i class="fas fa-calendar-alt me-1"></i>Jul 25, 2025
+                        </span>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
+                        Independence Day Celebration & Holiday Notice
+                    </h4>
+                    <p class="text-muted mb-3">
+                        School will remain closed on August 15, 2025, for Independence Day. 
+                        Special celebration program will be held on August 14, 2025, at 10 AM.
+                    </p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="text-muted small">
+                            <i class="fas fa-user me-1"></i>Administration
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fee Notice -->
+            <div class="col-lg-6 mb-4">
+                <div class="notice-card p-4 h-100">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="notice-badge" style="background: var(--electric-blue);">FEE</span>
+                        <span class="notice-date">
+                            <i class="fas fa-calendar-alt me-1"></i>Jul 20, 2025
+                        </span>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
+                        Monthly Fee Payment Reminder - August 2025
+                    </h4>
+                    <p class="text-muted mb-3">
+                        Monthly fees for August 2025 are due by August 10, 2025. 
+                        Late payment will incur a fine of ₹50. Payment can be made at the school office or online.
+                    </p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="text-muted small">
+                            <i class="fas fa-user me-1"></i>Accounts Section
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary">Pay Online</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-5">
+            <button class="btn btn-primary btn-lg rounded-pill px-5">
+                <i class="fas fa-plus me-2"></i>Load More Notices
+            </button>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Filter functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-pills .btn');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('btn-outline-primary');
+                btn.classList.remove('btn-primary');
+            });
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            this.classList.remove('btn-outline-primary');
+            this.classList.add('btn-primary');
+            
+            // Here you can add filtering logic for notices
+            console.log('Filter applied:', this.textContent);
+        });
+    });
+});
+</script>
+{% endblock %}
