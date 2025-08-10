@@ -1,1 +1,494 @@
-day school
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day School Program - Muraripukur Government Sponsored Higher Secondary School</title>
+    <meta
+      name="description"
+      content="Join our comprehensive Day School program at Muraripukur Government Sponsored Higher Secondary School. Full-day quality education with modern facilities and expert faculty."
+    />
+    <link rel="stylesheet" href="{% static 'test.css' %}" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <!-- Logo and School Name -->
+          <a href="{% url 'landing_page' %}" class="logo">
+            <div class="logo-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="logo-text">
+              <h1>Muraripukur Govt. Spond. Higher Secondary School</h1>
+              <p class="logo-tagline">Excellence in Education</p>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <nav class="nav-desktop">
+            <a href="{% url 'landing_page' %}" class="nav-link">Home</a>
+            <a href="{% url 'about' %}" class="nav-link">About</a>
+            <div class="nav-dropdown">
+              <a  class="nav-link dropdown-toggle">Programs<i class="fas fa-chevron-down"></i></a>
+              <div class="dropdown-menu">
+                <a href="{% url 'morning_school_landing' %}" class="dropdown-item">Morning School</a>
+                <a href="{% url 'day_school_landing' %}" class="dropdown-item active">Day School</a>
+                <a href="{% url 'vocational_landing' %}" class="dropdown-item">Vocational Courses</a>
+              </div>
+            </div>
+            <div class="nav-dropdown">
+              <a  class="nav-link dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
+              <div class="dropdown-menu">
+                <a href="{% url 'morning' %}" class="dropdown-item">Morning Department</a>
+                <a href="{% url 'day' %}" class="dropdown-item">Day Department</a>
+                <a href="{% url 'non_teaching' %}" class="dropdown-item">Other Non-Teaching Staff</a>
+              </div>
+            </div>
+            <a href="{% url 'notice' %}" class="nav-link">Notice</a>
+            <a href="{% url 'gallery' %}" class="nav-link">Gallery</a>
+            <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+          </nav>
+
+          <!-- CTA Button -->
+          <div class="header-cta">
+            <a href="{% url 'login_page' %}" class="marks-portal-btn">
+              <i class="fas fa-chart-line"></i> Marks Portal
+            </a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars" id="menuIcon"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-content">
+          <a href="{% url 'landing_page' %}" class="mobile-nav-link">Home</a>
+          <a href="{% url 'about' %}" class="mobile-nav-link">About</a>
+          <div class="mobile-nav-dropdown">
+            <a class="mobile-nav-link mobile-dropdown-toggle">Programs <i class="fas fa-chevron-down"></i></a>
+            <div class="mobile-dropdown-menu">
+              <a href="{% url 'morning_school_landing' %}" class="mobile-dropdown-item">Morning School</a>
+              <a href="{% url 'day_school_landing' %}" class="mobile-dropdown-item">Day School</a>
+              <a href="{% url 'vocational_landing' %}" class="mobile-dropdown-item">Vocational Courses</a>
+            </div>
+          </div>
+          <div class="mobile-nav-dropdown">
+            <a class="mobile-nav-link mobile-dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
+            <div class="mobile-dropdown-menu">
+              <a href="{% url 'morning' %}" class="mobile-dropdown-item">Morning Department</a>
+              <a href="{% url 'day' %}" class="mobile-dropdown-item">Day Department</a>
+              <a href="{% url 'non_teaching' %}" class="mobile-dropdown-item">Other Non-Teaching Staff</a>
+            </div>
+          </div>
+          <a href="{% url 'notice' %}" class="mobile-nav-link">Notice</a>
+          <a href="{% url 'gallery' %}" class="mobile-nav-link">Gallery</a>
+          <a href="{% url 'contact' %}" class="mobile-nav-link">Contact</a>
+          <a href="{% url 'login_page' %}" class="marks-portal-btn mobile-cta">
+             Marks Portal
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="hero-title">
+              Day School Program
+              <span class="hero-highlight">Full-Day Excellence</span>
+            </h1>
+            <p class="hero-description">
+              Comprehensive education from Class VI to XII with extended learning hours, 
+              modern facilities, and personalized attention for holistic development.
+            </p>
+            <div class="hero-buttons">
+              <a href="{% url 'contact' %}" class="btn btn-primary">Apply Now</a>
+              <a href="#program-details" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-card">
+              <div class="hero-card-content">
+                <div class="hero-card-icon">
+                  <i class="fas fa-sun"></i>
+                </div>
+                <h3>Full Day Learning</h3>
+                <p>9:00 AM - 4:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program Stats -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Day School Students</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">Dedicated Teachers</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Board Pass Rate</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Hours Daily Learning</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program Details Section -->
+    <section class="about" id="program-details">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2 class="section-title">About Our Day School Program</h2>
+            <p class="about-description">
+              Our Day School program offers a comprehensive educational experience from 9:00 AM to 4:00 PM, 
+              providing extended learning opportunities for students from Class VI to XII. With modern infrastructure, 
+              expert faculty, and a focus on both academics and co-curricular activities.
+            </p>
+            <p class="about-description">
+              Students benefit from smaller class sizes, personalized attention, and access to state-of-the-art 
+              facilities throughout the day. Our program emphasizes practical learning, critical thinking, 
+              and character development alongside academic excellence.
+            </p>
+            <div class="values-grid">
+              <div class="value-item">
+                <div class="value-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <h3>Extended Hours</h3>
+                <p>Full day learning with structured schedule and breaks</p>
+              </div>
+              <div class="value-item">
+                <div class="value-icon">
+                  <i class="fas fa-users-cog"></i>
+                </div>
+                <h3>Small Classes</h3>
+                <p>Limited strength ensuring personalized attention</p>
+              </div>
+              <div class="value-item">
+                <div class="value-icon">
+                  <i class="fas fa-medal"></i>
+                </div>
+                <h3>Excellence Focus</h3>
+                <p>Emphasis on both academic and personal development</p>
+              </div>
+            </div>
+          </div>
+          <div class="about-mission">
+            <div class="mission-card">
+              <h3>Day School Features</h3>
+              <div class="mission-items">
+                <div class="mission-item">
+                  <i class="fas fa-check-circle"></i>
+                  <p>Classes VI to XII (Science, Commerce, Arts)</p>
+                </div>
+                <div class="mission-item">
+                  <i class="fas fa-check-circle"></i>
+                  <p>English and Bengali medium instruction</p>
+                </div>
+                <div class="mission-item">
+                  <i class="fas fa-check-circle"></i>
+                  <p>Computer education and practical labs</p>
+                </div>
+                <div class="mission-item">
+                  <i class="fas fa-check-circle"></i>
+                  <p>Sports and co-curricular activities</p>
+                </div>
+                <div class="mission-item">
+                  <i class="fas fa-check-circle"></i>
+                  <p>Regular parent-teacher interactions</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="facilities">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Daily Schedule</h2>
+          <p class="section-description">
+            A well-structured day that balances academics, activities, and personal development.
+          </p>
+        </div>
+        <div class="facilities-grid">
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3>9:00 AM - 10:30 AM</h3>
+            <p>Morning Classes & Assembly</p>
+          </div>
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3>10:45 AM - 12:15 PM</h3>
+            <p>Core Subject Classes</p>
+          </div>
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <h3>12:15 PM - 1:00 PM</h3>
+            <p>Lunch Break & Recreation</p>
+          </div>
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-microscope"></i>
+            </div>
+            <h3>1:00 PM - 2:30 PM</h3>
+            <p>Lab Sessions & Practicals</p>
+          </div>
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-running"></i>
+            </div>
+            <h3>2:45 PM - 3:30 PM</h3>
+            <p>Sports & Co-curricular</p>
+          </div>
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>3:30 PM - 4:00 PM</h3>
+            <p>Study Hall & Dismissal</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section class="achievements">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Subjects Offered</h2>
+          <p class="section-description">
+            Comprehensive curriculum covering all major streams and subjects for holistic education.
+          </p>
+        </div>
+        <div class="achievements-grid">
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-flask"></i>
+            </div>
+            <h3>Science Stream</h3>
+            <p>Physics, Chemistry, Biology, Mathematics</p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <h3>Commerce Stream</h3>
+            <p>Accountancy, Business Studies, Economics</p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <h3>Arts Stream</h3>
+            <p>History, Geography, Political Science, Bengali</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admission Section -->
+    <section class="news-events">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Admission Information</h2>
+          <p class="section-description">
+            Join our Day School program and experience quality education with modern facilities.
+          </p>
+        </div>
+        <div class="news-grid">
+          <div class="news-card">
+            <div class="news-image saffron-gradient">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
+            <div class="news-content">
+              <div class="news-date">Admission Criteria</div>
+              <h3>Eligibility Requirements</h3>
+              <p>
+                Students seeking admission to Class VI must have completed Class V. 
+                For Class XI, students must have passed Class X with required marks.
+              </p>
+              <a href="{% url 'contact' %}" class="news-link">
+                Learn More <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="news-card">
+            <div class="news-image emerald-gradient">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="news-content">
+              <div class="news-date">Important Dates</div>
+              <h3>Application Timeline</h3>
+              <p>
+                Applications open in March for the next academic year. 
+                Entrance tests and interviews conducted in April-May.
+              </p>
+              <a href="{% url 'contact' %}" class="news-link">
+                Apply Now <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="news-card">
+            <div class="news-image gold-gradient">
+              <i class="fas fa-rupee-sign"></i>
+            </div>
+            <div class="news-content">
+              <div class="news-date">Fee Structure</div>
+              <h3>Affordable Education</h3>
+              <p>
+                Competitive fee structure with scholarships available for 
+                meritorious and economically disadvantaged students.
+              </p>
+              <a href="{% url 'contact' %}" class="news-link">
+                View Details <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready to Join Our Day School Program?</h2>
+          <p>
+            Give your child the advantage of comprehensive day-long education with 
+            modern facilities and expert guidance. Apply for admission today!
+          </p>
+          <div class="cta-buttons">
+            <a href="{% url 'contact' %}" class="btn btn-primary">Apply for Admission</a>
+            <a href="{% url 'contact' %}" class="btn btn-outline">Schedule Visit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <!-- School Info -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              <div class="logo-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="logo-text">
+                <h3>Muraripukur Govt. Spond. Higher Secondary School</h3>
+                <p>Excellence in Education</p>
+              </div>
+            </div>
+            <p class="footer-description">
+              Nurturing young minds since 1985, we are committed to providing
+              holistic education that prepares students for a bright future.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="{% url 'about' %}">About Us</a></li>
+              <li><a href="{% url 'notice' %}">Notice</a></li>
+              <li><a href="{% url 'gallery' %}">Gallery</a></li>
+              <li><a href="{% url 'morning' %}">Morning Department</a></li>
+              <li><a href="{% url 'day' %}">Day Department</a></li>
+              <li><a href="{% url 'non_teaching' %}">Non-Teaching Staff</a></li>
+            </ul>
+          </div>
+
+          <!-- Programs -->
+          <div class="footer-section">
+            <h4>Programs</h4>
+            <ul class="footer-links">
+              <li><a href="{% url 'morning_school_landing' %}">Morning School</a></li>
+              <li><a href="{% url 'day_school_landing' %}">Day School</a></li>
+              <li><a href="{% url 'vocational_landing' %}">Vocational Courses</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="footer-section">
+            <h4>Contact Us</h4>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>
+                  Muraripukur, Birbhum,<br />West Bengal<br />India
+                  731216
+                </p>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <p>+91 3463 123456</p>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <p>info@muraripukur.edu.in</p>
+              </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="social-media">
+              <h5>Follow Us</h5>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+          <p>&copy; 2024 Muraripukur Government Sponsored Higher Secondary School. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+  </body>
+</html>

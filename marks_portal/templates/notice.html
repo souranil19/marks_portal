@@ -120,15 +120,15 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-md-3 mb-4">
-                <div class="h2 fw-bold" style="color: var(--primary-blue);">25+</div>
+                <div class="h2 fw-bold" style="color: var(--primary-blue);">{{ total_notices }}+</div>
                 <p class="mb-0 text-muted">Active Notices</p>
             </div>
             <div class="col-md-3 mb-4">
-                <div class="h2 fw-bold" style="color: var(--primary-blue);">15</div>
+                <div class="h2 fw-bold" style="color: var(--primary-blue);">{{ this_month_notices }}</div>
                 <p class="mb-0 text-muted">This Month</p>
             </div>
             <div class="col-md-3 mb-4">
-                <div class="h2 fw-bold" style="color: var(--primary-blue);">5</div>
+                <div class="h2 fw-bold" style="color: var(--primary-blue);">{{ urgent_notices }}</div>
                 <p class="mb-0 text-muted">Urgent</p>
             </div>
             <div class="col-md-3 mb-4">
@@ -147,167 +147,68 @@
             <div class="col-12 text-center">
                 <h2 class="section-title mb-4">Filter Notices</h2>
                 <div class="filter-pills">
-                    <button class="btn btn-primary active">All Notices</button>
-                    <button class="btn btn-outline-primary">Academic</button>
-                    <button class="btn btn-outline-primary">Events</button>
-                    <button class="btn btn-outline-primary">Admissions</button>
-                    <button class="btn btn-outline-primary">Urgent</button>
-                    <button class="btn btn-outline-primary">Results</button>
+                    <a href="{% url 'notice' %}" class="btn {% if current_filter == 'all' %}btn-primary active{% else %}btn-outline-primary{% endif %}">All Notices</a>
+                    <a href="{% url 'notice' %}?filter=academic" class="btn {% if current_filter == 'academic' %}btn-primary active{% else %}btn-outline-primary{% endif %}">Academic</a>
+                    <a href="{% url 'notice' %}?filter=event" class="btn {% if current_filter == 'event' %}btn-primary active{% else %}btn-outline-primary{% endif %}">Events</a>
+                    <a href="{% url 'notice' %}?filter=admissions" class="btn {% if current_filter == 'admissions' %}btn-primary active{% else %}btn-outline-primary{% endif %}">Admissions</a>
+                    <a href="{% url 'notice' %}?filter=urgent" class="btn {% if current_filter == 'urgent' %}btn-primary active{% else %}btn-outline-primary{% endif %}">Urgent</a>
+                    <a href="{% url 'notice' %}?filter=results" class="btn {% if current_filter == 'results' %}btn-primary active{% else %}btn-outline-primary{% endif %}">Results</a>
                 </div>
             </div>
         </div>
 
         <!-- Notice Cards -->
         <div class="row">
-            <!-- Urgent Notice -->
+            {% for notice in notices %}
             <div class="col-lg-6 mb-4">
-                <div class="notice-card notice-urgent p-4 h-100">
+                <div class="notice-card {% if notice.is_urgent %}notice-urgent{% endif %} p-4 h-100">
                     <div class="d-flex justify-content-between align-items-start mb-3">
-                        <span class="notice-badge">URGENT</span>
+                        <span class="notice-badge" style="background: {{ notice.get_badge_color }};">
+                            {{ notice.category }}
+                        </span>
                         <span class="notice-date">
-                            <i class="fas fa-calendar-alt me-1"></i>Aug 04, 2025
+                            <i class="fas fa-calendar-alt me-1"></i>{{ notice.date_posted|date:"M d, Y" }}
                         </span>
                     </div>
                     <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
-                        Admission Forms for Class XI - Last Date Extended
+                        {{ notice.title }}
                     </h4>
                     <p class="text-muted mb-3">
-                        The last date for submission of admission forms for Class XI has been extended to August 15, 2025. 
-                        Students who haven't submitted their forms yet can visit the school office between 10 AM to 4 PM.
+                        {{ notice.content|truncatewords:30 }}
                     </p>
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="text-muted small">
-                            <i class="fas fa-user me-1"></i>Principal's Office
+                            <i class="fas fa-user me-1"></i>{{ notice.posted_by }}
                         </div>
-                        <button class="btn btn-sm btn-outline-primary">Read More</button>
+                        {% if notice.pdf_file and notice.button_text %}
+                        <a href="{{ notice.pdf_file.url }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                            <i class="fas fa-file-pdf me-1"></i>{{ notice.button_text }}
+                        </a>
+                        {% elif notice.pdf_file %}
+                        <a href="{{ notice.pdf_file.url }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                            <i class="fas fa-file-pdf me-1"></i>Download PDF
+                        </a>
+                        {% elif notice.button_text %}
+                        <button class="btn btn-sm btn-outline-primary">
+                            {{ notice.button_text }}
+                        </button>
+                        {% else %}
+                        <button class="btn btn-sm btn-outline-primary">
+                            Read More
+                        </button>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-
-            <!-- Regular Notice -->
-            <div class="col-lg-6 mb-4">
-                <div class="notice-card p-4 h-100">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <span class="notice-badge">ACADEMIC</span>
-                        <span class="notice-date">
-                            <i class="fas fa-calendar-alt me-1"></i>Aug 02, 2025
-                        </span>
-                    </div>
-                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
-                        Class XII Final Examination Schedule Released
-                    </h4>
-                    <p class="text-muted mb-3">
-                        The examination schedule for Class XII final examinations has been published. 
-                        Students can download the schedule from the student portal or collect hard copies from the office.
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="text-muted small">
-                            <i class="fas fa-user me-1"></i>Examination Cell
-                        </div>
-                        <button class="btn btn-sm btn-outline-primary">Download</button>
-                    </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="py-5">
+                    <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
+                    <h4 class="text-muted">No notices found</h4>
+                    <p class="text-muted">There are no notices to display at the moment.</p>
                 </div>
             </div>
-
-            <!-- Event Notice -->
-            <div class="col-lg-6 mb-4">
-                <div class="notice-card p-4 h-100">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <span class="notice-badge" style="background: var(--secondary-blue);">EVENT</span>
-                        <span class="notice-date">
-                            <i class="fas fa-calendar-alt me-1"></i>Jul 30, 2025
-                        </span>
-                    </div>
-                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
-                        Annual Cultural Program - Auditions Open
-                    </h4>
-                    <p class="text-muted mb-3">
-                        Auditions for the annual cultural program will be held on August 10, 2025. 
-                        Students interested in participating can register with their respective class teachers.
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="text-muted small">
-                            <i class="fas fa-user me-1"></i>Cultural Committee
-                        </div>
-                        <button class="btn btn-sm btn-outline-primary">Register</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Another Notice -->
-            <div class="col-lg-6 mb-4">
-                <div class="notice-card p-4 h-100">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <span class="notice-badge" style="background: var(--light-blue);">RESULTS</span>
-                        <span class="notice-date">
-                            <i class="fas fa-calendar-alt me-1"></i>Jul 28, 2025
-                        </span>
-                    </div>
-                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
-                        Class XI First Terminal Results Published
-                    </h4>
-                    <p class="text-muted mb-3">
-                        First terminal examination results for Class XI are now available. 
-                        Students can check their results through the marks portal using their roll numbers.
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="text-muted small">
-                            <i class="fas fa-user me-1"></i>Result Section
-                        </div>
-                        <button class="btn btn-sm btn-outline-primary">Check Results</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Holiday Notice -->
-            <div class="col-lg-6 mb-4">
-                <div class="notice-card p-4 h-100">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <span class="notice-badge" style="background: var(--royal-blue);">HOLIDAY</span>
-                        <span class="notice-date">
-                            <i class="fas fa-calendar-alt me-1"></i>Jul 25, 2025
-                        </span>
-                    </div>
-                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
-                        Independence Day Celebration & Holiday Notice
-                    </h4>
-                    <p class="text-muted mb-3">
-                        School will remain closed on August 15, 2025, for Independence Day. 
-                        Special celebration program will be held on August 14, 2025, at 10 AM.
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="text-muted small">
-                            <i class="fas fa-user me-1"></i>Administration
-                        </div>
-                        <button class="btn btn-sm btn-outline-primary">View Details</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fee Notice -->
-            <div class="col-lg-6 mb-4">
-                <div class="notice-card p-4 h-100">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <span class="notice-badge" style="background: var(--electric-blue);">FEE</span>
-                        <span class="notice-date">
-                            <i class="fas fa-calendar-alt me-1"></i>Jul 20, 2025
-                        </span>
-                    </div>
-                    <h4 class="fw-bold mb-3" style="color: var(--gray-900);">
-                        Monthly Fee Payment Reminder - August 2025
-                    </h4>
-                    <p class="text-muted mb-3">
-                        Monthly fees for August 2025 are due by August 10, 2025. 
-                        Late payment will incur a fine of ₹50. Payment can be made at the school office or online.
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="text-muted small">
-                            <i class="fas fa-user me-1"></i>Accounts Section
-                        </div>
-                        <button class="btn btn-sm btn-outline-primary">Pay Online</button>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
 
         <!-- Load More Button -->
@@ -322,28 +223,12 @@
 
 {% block extra_js %}
 <script>
-// Filter functionality
+// Smooth scrolling for any internal links
 document.addEventListener('DOMContentLoaded', function() {
-    const filterButtons = document.querySelectorAll('.filter-pills .btn');
+    console.log('Notice board loaded');
     
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => {
-                btn.classList.remove('active');
-                btn.classList.add('btn-outline-primary');
-                btn.classList.remove('btn-primary');
-            });
-            
-            // Add active class to clicked button
-            this.classList.add('active');
-            this.classList.remove('btn-outline-primary');
-            this.classList.add('btn-primary');
-            
-            // Here you can add filtering logic for notices
-            console.log('Filter applied:', this.textContent);
-        });
-    });
+    // You can add any additional JavaScript functionality here
+    // For example, notice card animations, modal popups, etc.
 });
 </script>
 {% endblock %}

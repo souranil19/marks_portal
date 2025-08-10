@@ -1,1 +1,494 @@
-morning school
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Morning School Program - Muraripukur Government Sponsored Higher Secondary School</title>
+    <meta
+      name="description"
+      content="Join our Morning School program at Muraripukur Government Sponsored Higher Secondary School. Quality education with flexible timing for working students and professionals."
+    />
+    <link rel="stylesheet" href="{% static 'test.css' %}" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <!-- Logo and School Name -->
+          <a href="{% url 'landing_page' %}" class="logo">
+            <div class="logo-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="logo-text">
+              <h1>Muraripukur Govt. Spond. Higher Secondary School</h1>
+              <p class="logo-tagline">Excellence in Education</p>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <nav class="nav-desktop">
+            <a href="{% url 'landing_page' %}" class="nav-link">Home</a>
+            <a href="{% url 'about' %}" class="nav-link">About</a>
+            <div class="nav-dropdown">
+              <a  class="nav-link dropdown-toggle">Programs<i class="fas fa-chevron-down"></i></a>
+              <div class="dropdown-menu">
+                <a href="{% url 'morning_school_landing' %}" class="dropdown-item active">Morning School</a>
+                <a href="{% url 'day_school_landing' %}" class="dropdown-item">Day School</a>
+                <a href="{% url 'vocational_landing' %}" class="dropdown-item">Vocational Courses</a>
+              </div>
+            </div>
+            <div class="nav-dropdown">
+              <a  class="nav-link dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
+              <div class="dropdown-menu">
+                <a href="{% url 'morning' %}" class="dropdown-item">Morning Department</a>
+                <a href="{% url 'day' %}" class="dropdown-item">Day Department</a>
+                <a href="{% url 'non_teaching' %}" class="dropdown-item">Other Non-Teaching Staff</a>
+              </div>
+            </div>
+            <a href="{% url 'notice' %}" class="nav-link">Notice</a>
+            <a href="{% url 'gallery' %}" class="nav-link">Gallery</a>
+            <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+          </nav>
+
+          <!-- CTA Button -->
+          <div class="header-cta">
+            <a href="{% url 'login_page' %}" class="marks-portal-btn">
+              <i class="fas fa-chart-line"></i> Marks Portal
+            </a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars" id="menuIcon"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-content">
+          <a href="{% url 'landing_page' %}" class="mobile-nav-link">Home</a>
+          <a href="{% url 'about' %}" class="mobile-nav-link">About</a>
+          <div class="mobile-nav-dropdown">
+            <a class="mobile-nav-link mobile-dropdown-toggle">Programs <i class="fas fa-chevron-down"></i></a>
+            <div class="mobile-dropdown-menu">
+              <a href="{% url 'morning_school_landing' %}" class="mobile-dropdown-item">Morning School</a>
+              <a href="{% url 'day_school_landing' %}" class="mobile-dropdown-item">Day School</a>
+              <a href="{% url 'vocational_landing' %}" class="mobile-dropdown-item">Vocational Courses</a>
+            </div>
+          </div>
+          <div class="mobile-nav-dropdown">
+            <a class="mobile-nav-link mobile-dropdown-toggle">Faculty <i class="fas fa-chevron-down"></i></a>
+            <div class="mobile-dropdown-menu">
+              <a href="{% url 'morning' %}" class="mobile-dropdown-item">Morning Department</a>
+              <a href="{% url 'day' %}" class="mobile-dropdown-item">Day Department</a>
+              <a href="{% url 'non_teaching' %}" class="mobile-dropdown-item">Other Non-Teaching Staff</a>
+            </div>
+          </div>
+          <a href="{% url 'notice' %}" class="mobile-nav-link">Notice</a>
+          <a href="{% url 'gallery' %}" class="mobile-nav-link">Gallery</a>
+          <a href="{% url 'contact' %}" class="mobile-nav-link">Contact</a>
+          <a href="{% url 'login_page' %}" class="marks-portal-btn mobile-cta">
+             Marks Portal
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="hero-title">
+              Morning School Program
+              <span class="hero-highlight">Early Bird Success</span>
+            </h1>
+            <p class="hero-description">
+              Perfect for students who prefer morning hours or work in the afternoon. 
+              Quality education from 7:00 AM to 12:00 PM with experienced faculty and modern curriculum.
+            </p>
+            <div class="hero-buttons">
+              <a href="{% url 'contact' %}" class="btn btn-primary">Apply Now</a>
+              <a href="#program-details" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-card">
+              <div class="hero-card-content">
+                <div class="hero-card-icon">
+                  <i class="fas fa-sun"></i>
+                </div>
+                <h3>Morning Classes</h3>
+                <p>7:00 AM - 12:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program Stats -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">400+</div>
+            <div class="stat-label">Morning Students</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">20+</div>
+            <div class="stat-label">Expert Teachers</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">96%</div>
+            <div class="stat-label">Success Rate</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Hours Quality Learning</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program Details Section -->
+    <section class="about" id="program-details">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2 class="section-title">About Our Morning School Program</h2>
+            <p class="about-description">
+              Our Morning School program is designed for students who thrive in early hours or need flexible 
+              scheduling. Running from 7:00 AM to 12:00 PM, this program offers the same quality education 
+              as our day school with condensed but comprehensive learning sessions.
+            </p>
+            <p class="about-description">
+              Ideal for students who work part-time, have other commitments in the afternoon, or simply 
+              prefer morning learning. Our experienced faculty ensures effective knowledge transfer in 
+              optimized time slots with focus on examination preparation.
+            </p>
+            <div class="values-grid">
+              <div class="value-item">
+                <div class="value-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <h3>Flexible Timing</h3>
+                <p>Morning hours allowing afternoon freedom for other activities</p>
+              </div>
+              <div class="value-item">
+                <div class="value-icon">
+                  <i class="fas fa-brain"></i>
+                </div>
+                <h3>Focused Learning</h3>
+                <p>Optimized curriculum delivery in concentrated sessions</p>
+              </div>
+              <div class="value-item">
+                <div class="value-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <h3>Same Quality</h3>
+                <p>Equivalent educational standards as day school program</p>
+              </div>
+            </div>
+          </div>
+          <div class="about-mission">
+            <div class="mission-card">
+              <h3>Morning School Features</h3>
+              <div class="mission-items">
+                <div class="mission-item">
+                  <i class="fas fa-check-circle"></i>
+                  <p>Classes XI and XII (Science, Commerce, Arts)</p>
+                </div>
+                <div class="mission-item">
+                  <i class="fas fa-check-circle"></i>
+                  <p>English and Bengali medium instruction</p>
+                </div>
+                <div class="mission-item">
+                  <i class="fas fa-check-circle"></i>
+                  <p>Board examination focused curriculum</p>
+                </div>
+                <div class="mission-item">
+                  <i class="fas fa-check-circle"></i>
+                  <p>Regular tests and evaluation</p>
+                </div>
+                <div class="mission-item">
+                  <i class="fas fa-check-circle"></i>
+                  <p>Career guidance and counseling</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="facilities">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Daily Schedule</h2>
+          <p class="section-description">
+            Efficiently planned morning schedule to maximize learning in compact time slots.
+          </p>
+        </div>
+        <div class="facilities-grid">
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-bell"></i>
+            </div>
+            <h3>7:00 AM - 7:15 AM</h3>
+            <p>Morning Assembly & Prayer</p>
+          </div>
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3>7:15 AM - 8:45 AM</h3>
+            <p>First Period Classes</p>
+          </div>
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-coffee"></i>
+            </div>
+            <h3>8:45 AM - 9:00 AM</h3>
+            <p>Short Break & Refreshment</p>
+          </div>
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h3>9:00 AM - 10:30 AM</h3>
+            <p>Core Subject Classes</p>
+          </div>
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-flask"></i>
+            </div>
+            <h3>10:45 AM - 11:45 AM</h3>
+            <p>Lab Sessions & Practicals</p>
+          </div>
+          <div class="facility-card">
+            <div class="facility-icon">
+              <i class="fas fa-clipboard-check"></i>
+            </div>
+            <h3>11:45 AM - 12:00 PM</h3>
+            <p>Revision & Dismissal</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section class="achievements">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Why Choose Morning School?</h2>
+          <p class="section-description">
+            Discover the unique advantages of our morning school program for focused learning.
+          </p>
+        </div>
+        <div class="achievements-grid">
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <h3>Work-Study Balance</h3>
+            <p>Perfect for students with afternoon jobs or commitments</p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3>Peak Mental Hours</h3>
+            <p>Utilize morning hours when mind is fresh and focused</p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-money-bill"></i>
+            </div>
+            <h3>Cost Effective</h3>
+            <p>Lower fees while maintaining educational quality</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admission Section -->
+    <section class="news-events">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Admission Information</h2>
+          <p class="section-description">
+            Join our Morning School program and balance your education with other commitments.
+          </p>
+        </div>
+        <div class="news-grid">
+          <div class="news-card">
+            <div class="news-image saffron-gradient">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="news-content">
+              <div class="news-date">Eligibility</div>
+              <h3>Who Can Apply</h3>
+              <p>
+                Students who have passed Class X can apply for Class XI admission. 
+                Working students and those with afternoon commitments are welcome.
+              </p>
+              <a href="{% url 'contact' %}" class="news-link">
+                Apply Now <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="news-card">
+            <div class="news-image emerald-gradient">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="news-content">
+              <div class="news-date">Admission Process</div>
+              <h3>Simple Steps</h3>
+              <p>
+                Submit application form with required documents. 
+                Merit-based selection with counseling for course selection.
+              </p>
+              <a href="{% url 'contact' %}" class="news-link">
+                Learn Process <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="news-card">
+            <div class="news-image gold-gradient">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <div class="news-content">
+              <div class="news-date">Financial Aid</div>
+              <h3>Scholarships Available</h3>
+              <p>
+                Need-based financial assistance and merit scholarships 
+                available for deserving students.
+              </p>
+              <a href="{% url 'contact' %}" class="news-link">
+                Know More <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Start Your Day with Quality Education!</h2>
+          <p>
+            Join our Morning School program and make the most of your early hours with 
+            focused learning and flexible scheduling. Perfect for ambitious students!
+          </p>
+          <div class="cta-buttons">
+            <a href="{% url 'contact' %}" class="btn btn-primary">Apply for Admission</a>
+            <a href="{% url 'contact' %}" class="btn btn-outline">Get Information</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <!-- School Info -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              <div class="logo-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="logo-text">
+                <h3>Muraripukur Govt. Spond. Higher Secondary School</h3>
+                <p>Excellence in Education</p>
+              </div>
+            </div>
+            <p class="footer-description">
+              Nurturing young minds since 1985, we are committed to providing
+              holistic education that prepares students for a bright future.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="{% url 'about' %}">About Us</a></li>
+              <li><a href="{% url 'notice' %}">Notice</a></li>
+              <li><a href="{% url 'gallery' %}">Gallery</a></li>
+              <li><a href="{% url 'morning' %}">Morning Department</a></li>
+              <li><a href="{% url 'day' %}">Day Department</a></li>
+              <li><a href="{% url 'non_teaching' %}">Non-Teaching Staff</a></li>
+            </ul>
+          </div>
+
+          <!-- Programs -->
+          <div class="footer-section">
+            <h4>Programs</h4>
+            <ul class="footer-links">
+              <li><a href="{% url 'morning_school_landing' %}">Morning School</a></li>
+              <li><a href="{% url 'day_school_landing' %}">Day School</a></li>
+              <li><a href="{% url 'vocational_landing' %}">Vocational Courses</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="footer-section">
+            <h4>Contact Us</h4>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>
+                  Muraripukur, Birbhum,<br />West Bengal<br />India
+                  731216
+                </p>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <p>+91 3463 123456</p>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <p>info@muraripukur.edu.in</p>
+              </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="social-media">
+              <h5>Follow Us</h5>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+          <p>&copy; 2024 Muraripukur Government Sponsored Higher Secondary School. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+  </body>
+</html>
