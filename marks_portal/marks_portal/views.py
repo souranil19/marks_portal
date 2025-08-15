@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from django.utils import timezone
 from .models import Notice
 
 def school_landing(request):
@@ -26,13 +27,18 @@ def notice(request):
     if filter_category != 'all' and filter_category:
         notices = notices.filter(category=filter_category.upper())
     
+    # Get current date for dynamic filtering
+    now = timezone.now()
+    current_month = now.month
+    current_year = now.year
+    
     context = {
         'notices': notices,
         'current_filter': filter_category,
         'total_notices': Notice.objects.filter(is_active=True).count(),
         'urgent_notices': Notice.objects.filter(is_active=True, is_urgent=True).count(),
         'this_month_notices': Notice.objects.filter(
-            is_active=True, date_posted__month=8, date_posted__year=2025).count(),
+            is_active=True, date_posted__month=current_month, date_posted__year=current_year).count(),
     }
     
     return render(request, 'notice.html', context)
