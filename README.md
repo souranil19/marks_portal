@@ -10,6 +10,19 @@ A Django-based school portal that combines a public-facing website with student 
 - Dynamic notice board with categories, urgency highlights, stats, and optional PDF downloads.
 - Admin interface for managing notices, students, teachers, and class access.
 
+## Project video
+
+Demo video: [docs/media/Screen Recording 2026-04-28 084729.mp4](docs/media/Screen%20Recording%202026-04-28%20084729.mp4).
+
+If you want to embed the video in the README, you can use:
+
+```html
+<video controls width="100%">
+   <source src="docs/media/Screen%20Recording%202026-04-28%20084729.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+</video>
+```
+
 ## DFD (Data Flow Diagram)
 
 ```mermaid
@@ -47,6 +60,9 @@ flowchart LR
 marks_portal/
   manage.py
   db.sqlite3
+   docs/
+      media/
+         Screen Recording 2026-04-28 084729.mp4
   marks_portal/               # Project settings + public pages
     settings.py
     urls.py
